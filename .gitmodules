@@ -1,0 +1,3 @@
+[submodule "geometry-class-library"]
+	path = geometry-class-library
+	url = git@bitbucket.org:Clearspan/geometry-class-library.git
