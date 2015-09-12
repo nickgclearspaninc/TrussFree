@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GeometryClassLibrary;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace ComponentFileReader
 {
+    public enum ComponentFunction { Gable, Girder, Hip, Jack, Rafter, Attic, Ag, Reversed, StructuralGable, Normal }
+
+    public enum ComponentType { Roof, Floor }
+
     [JsonObject(MemberSerialization.OptIn)]
     public class Component
     {
@@ -21,10 +20,16 @@ namespace ComponentFileReader
         public List<PlateConnector> PlateConnectors { get; set; }
 
         [JsonProperty]
-        public virtual List<Member> Members { get; set; }
+        public List<Member> Members { get; set; }
+
+        [JsonProperty]
+        public ComponentType ComponentType { get; set; }
+
+        [JsonProperty]
+        public ComponentFunction ComponentFunction { get; set; }
 
         [JsonConstructor]
-        public Component(List<Member> members, List<Bearing> bearings, List<PlateConnector> plateConnectors , string name = "")
+        public Component(List<Member> members, List<Bearing> bearings, List<PlateConnector> plateConnectors , ComponentType componentType, string name = "", ComponentFunction componentFunction = ComponentFunction.Normal)
         {
             this.Name = name;
             this.Members = members;

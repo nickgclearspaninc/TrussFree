@@ -1,0 +1,1614 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<TrussDetails TrussName="SuperTruss" AppVersion="Truss v5.03 [Build 0030]" XMLVersion="10">
+
+  <TrussFileType>Roof</TrussFileType>
+
+  <TrussFamily>1</TrussFamily>
+
+  <Span>288.000000</Span>
+
+  <Pitch>4 /12</Pitch>
+
+  <Quantity>1</Quantity>
+
+  <PricingQuantity>0</PricingQuantity>
+
+  <LtOverhang>0.000000</LtOverhang>
+
+  <RtOverhang>0.000000</RtOverhang>
+
+  <LtHeelHeight>3.939324</LtHeelHeight>
+
+  <RtHeelHeight>3.939324</RtHeelHeight>
+
+  <OverallHeight>51.939324</OverallHeight>
+
+  <Plies>1</Plies>
+
+  <WeightPerPly>83</WeightPerPly>
+
+  <Spacing>24</Spacing>
+
+  <BearingCombos NumbBrgCombos="1">
+
+    <BearingCombo>
+
+      <Bearings NumbBearings="2">
+
+        <Bearing Width="3.500000" Continuous="N" Fixity="PIN" Type="WALL">
+
+          <Location X="0" Y="0" Member="Bottom Chord"/>
+
+        </Bearing>
+
+        <Bearing Width="3.500000" Continuous="N" Fixity="HROLL" Type="WALL">
+
+          <Location X="288" Y="0" Member="Bottom Chord"/>
+
+        </Bearing>
+
+      </Bearings>
+
+    </BearingCombo>
+
+  </BearingCombos>
+
+  <TrussType ITRImport="N">
+
+    <Gable>N</Gable>
+
+    <Girder>N</Girder>
+
+    <Hip>N</Hip>
+
+    <Jack>N</Jack>
+
+    <Rafter>N</Rafter>
+
+    <Attic>N</Attic>
+
+    <Ag>N</Ag>
+
+    <Reversed>N</Reversed>
+
+    <StructGable>N</StructGable>
+
+  </TrussType>
+
+  <LoadingInfo>
+
+    <StandardLoading>
+
+      <TCLive>20.000</TCLive>
+
+      <BCLive>0.000</BCLive>
+
+      <TCDead>10.000</TCDead>
+
+      <BCDead>10.000</BCDead>
+
+    </StandardLoading>
+
+    <BuildingStandardLoading>
+
+      <TCLive>20.000</TCLive>
+
+      <BCLive>0.000</BCLive>
+
+      <TCDead>10.000</TCDead>
+
+      <BCDead>10.000</BCDead>
+
+    </BuildingStandardLoading>
+
+    <AutomatedLiveLoads>
+
+      <RoofLiveLoadProvision>IBC 2009</RoofLiveLoadProvision>
+
+    </AutomatedLiveLoads>
+
+    <WindLoad>
+
+      <UseWind>Y</UseWind>
+
+      <WindLoadProvision>ASCE7 - 05</WindLoadProvision>
+
+      <WindSpeed>90</WindSpeed>
+
+      <ExposureCategory>C</ExposureCategory>
+
+      <BuildingCategory>II</BuildingCategory>
+
+      <HurricaneRegion>N</HurricaneRegion>
+
+    </WindLoad>
+
+    <SnowLoad>
+
+      <UseSnow>Y</UseSnow>
+
+      <SnowLoadProvision>ASCE7 - 05</SnowLoadProvision>
+
+      <GroundSnowLoad>30</GroundSnowLoad>
+
+      <ExposureCategory>Partial</ExposureCategory>
+
+      <TerrainCategory>Unheated</TerrainCategory>
+
+    </SnowLoad>
+
+    <GirderLoad>
+
+      <GirderLoading>NoOne</GirderLoading>
+
+    </GirderLoad>
+
+    <LoadCases Count="16">
+
+      <LoadCase MWFRS="false" CC="false" AUTO="false" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC0">
+
+        <Id>Lr1</Id>
+
+        <Description>Std Live Load</Description>
+
+        <Type>Roof Live</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="false" CC="false" AUTO="false" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC1">
+
+        <Id>D1</Id>
+
+        <Description>Std Dead Load</Description>
+
+        <Type>Dead</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="false" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC2">
+
+        <Id>S1</Id>
+
+        <Description>Balanced Snow</Description>
+
+        <Type>Snow</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="false" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC3">
+
+        <Id>S2</Id>
+
+        <Description>Unbalanced Snow (Wind from Left)</Description>
+
+        <Type>Snow</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="false" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC4">
+
+        <Id>S3</Id>
+
+        <Description>Unbalanced Snow (Wind from Right)</Description>
+
+        <Type>Snow</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="true" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC5">
+
+        <Id>W1</Id>
+
+        <Description>MWFRS-Left(Up)</Description>
+
+        <Type>Wind</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="true" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC6">
+
+        <Id>W2</Id>
+
+        <Description>MWFRS-Right(Up)</Description>
+
+        <Type>Wind</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="true" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC7">
+
+        <Id>W3</Id>
+
+        <Description>MWFRS-(Max Dn)</Description>
+
+        <Type>Wind</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="false" CC="true" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC8">
+
+        <Id>W4</Id>
+
+        <Description>C&amp;C(Suction)</Description>
+
+        <Type>Wind</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="true" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC9">
+
+        <Id>W5</Id>
+
+        <Description>MWFRS-Left(Dn)</Description>
+
+        <Type>Wind</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="true" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC10">
+
+        <Id>W6</Id>
+
+        <Description>MWFRS-Right(Dn)</Description>
+
+        <Type>Wind</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="false" CC="true" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC11">
+
+        <Id>W7</Id>
+
+        <Description>C&amp;C(Compr)</Description>
+
+        <Type>Wind</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="true" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC12">
+
+        <Id>W8</Id>
+
+        <Description>MWFRS-Wind || to Ridge</Description>
+
+        <Type>Wind</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="false" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="true" InternalId="LC13">
+
+        <Id>AS10*</Id>
+
+        <Description>Attic Storage</Description>
+
+        <Type>Attic Storage</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="false" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC14">
+
+        <Id>UR1</Id>
+
+        <Description>Unbalanced Left Live Roof</Description>
+
+        <Type>Unbalanced Roof</Type>
+
+      </LoadCase>
+
+      <LoadCase MWFRS="false" CC="false" AUTO="true" USER="false" ATTIC="false" TTC="false" ATTIC_STO="false" InternalId="LC15">
+
+        <Id>UR2</Id>
+
+        <Description>Unbalanced Right Live Roof</Description>
+
+        <Type>Unbalanced Roof</Type>
+
+      </LoadCase>
+
+    </LoadCases>
+
+  </LoadingInfo>
+
+  <GeneralEngInfo>
+
+    <BuildingCode>IBC 2009</BuildingCode>
+
+    <WetService>N</WetService>
+
+    <GreenLumber>N</GreenLumber>
+
+    <TCBracing>Sheathed</TCBracing>
+
+    <BCBracing>Sheathed</BCBracing>
+
+    <WebBracing>
+
+      <Automatic ContinuousLateral="Y" TeeBracing="N">Y</Automatic>
+
+    </WebBracing>
+
+    <DeflectionCriteria>
+
+      <Roof>
+
+        <LiveLoad>360</LiveLoad>
+
+        <TotalLoad>240</TotalLoad>
+
+        <Cantilever>480</Cantilever>
+
+        <Overhang>120</Overhang>
+
+      </Roof>
+
+      <Floor>
+
+        <LiveLoad>480</LiveLoad>
+
+        <TotalLoad>360</TotalLoad>
+
+        <Cantilever>720</Cantilever>
+
+        <Overhang>240</Overhang>
+
+      </Floor>
+
+    </DeflectionCriteria>
+
+  </GeneralEngInfo>
+
+  <DesignInfo>
+
+    <Pass-Fail>
+
+      <CSI>PASSED</CSI>
+
+      <Deflection>PASSED</Deflection>
+
+      <Buckling>TODO</Buckling>
+
+      <Plating>PASSED</Plating>
+
+    </Pass-Fail>
+
+    <OverallTrussDesign>
+
+      <TotalBoardFootage>48.000000</TotalBoardFootage>
+
+      <BearingCombos NumbBrgCombos="1">
+
+        <BearingCombo>
+
+          <Bearing>
+
+            <MaxDownwardReaction>1111.407</MaxDownwardReaction>
+
+            <MaxUpliftReaction>-279.363</MaxUpliftReaction>
+
+            <MaxHorizReaction>2.226</MaxHorizReaction>
+
+            <BearingEnhancementRequired>N</BearingEnhancementRequired>
+
+            <Reactions Count="16">
+
+              <LoadCase InternalId="LC0">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>480</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC1">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>480</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC2">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>554</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC3">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>353</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC4">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>631</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC5">
+
+                <Horizontal>-2</Horizontal>
+
+                <Vertical>-241</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC6">
+
+                <Horizontal>2</Horizontal>
+
+                <Vertical>-244</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC7">
+
+                <Horizontal>-0</Horizontal>
+
+                <Vertical>-56</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC8">
+
+                <Horizontal>-0</Horizontal>
+
+                <Vertical>-567</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC9">
+
+                <Horizontal>-64</Horizontal>
+
+                <Vertical>-108</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC10">
+
+                <Horizontal>64</Horizontal>
+
+                <Vertical>-193</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC11">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>172</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC12">
+
+                <Horizontal>-0</Horizontal>
+
+                <Vertical>-373</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC13">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>240</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC14">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>360</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC15">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>120</Vertical>
+
+              </LoadCase>
+
+            </Reactions>
+
+          </Bearing>
+
+          <Bearing>
+
+            <MaxDownwardReaction>1111.407</MaxDownwardReaction>
+
+            <MaxUpliftReaction>-279.363</MaxUpliftReaction>
+
+            <MaxHorizReaction>0.000</MaxHorizReaction>
+
+            <BearingEnhancementRequired>N</BearingEnhancementRequired>
+
+            <Reactions Count="16">
+
+              <LoadCase InternalId="LC0">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>480</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC1">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>480</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC2">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>554</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC3">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>631</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC4">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>353</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC5">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>-244</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC6">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>-241</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC7">
+
+                <Horizontal>-0</Horizontal>
+
+                <Vertical>-56</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC8">
+
+                <Horizontal>-0</Horizontal>
+
+                <Vertical>-567</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC9">
+
+                <Horizontal>-0</Horizontal>
+
+                <Vertical>-193</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC10">
+
+                <Horizontal>-0</Horizontal>
+
+                <Vertical>-108</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC11">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>172</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC12">
+
+                <Horizontal>-0</Horizontal>
+
+                <Vertical>-373</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC13">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>240</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC14">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>120</Vertical>
+
+              </LoadCase>
+
+              <LoadCase InternalId="LC15">
+
+                <Horizontal>0</Horizontal>
+
+                <Vertical>360</Vertical>
+
+              </LoadCase>
+
+            </Reactions>
+
+          </Bearing>
+
+        </BearingCombo>
+
+      </BearingCombos>
+
+      <OverallDeflection>
+
+        <MaxVertical>-0.129231</MaxVertical>
+
+        <MaxHorizontal>0.075657</MaxHorizontal>
+
+      </OverallDeflection>
+
+    </OverallTrussDesign>
+
+    <TopChordDesign>
+
+      <CriticalCSI>0.520</CriticalCSI>
+
+      <CriticalCSIMaterial>TODO</CriticalCSIMaterial>
+
+      <MaxTCDeflection>
+
+        <LiveLoad>-0.052281</LiveLoad>
+
+        <TotalLoad>-0.129231</TotalLoad>
+
+        <Cantilever>0.000000</Cantilever>
+
+        <Overhang>0.000000</Overhang>
+
+      </MaxTCDeflection>
+
+      <BoardFootage>18.666667</BoardFootage>
+
+    </TopChordDesign>
+
+    <BottomChordDesign>
+
+      <CriticalCSI>0.655</CriticalCSI>
+
+      <CriticalCSIMaterial>TODO</CriticalCSIMaterial>
+
+      <MaxBCDeflection>
+
+        <LiveLoad>-0.103727</LiveLoad>
+
+        <TotalLoad>-0.249638</TotalLoad>
+
+        <Cantilever>0.000000</Cantilever>
+
+        <Overhang>0.000000</Overhang>
+
+      </MaxBCDeflection>
+
+      <BoardFootage>16.000000</BoardFootage>
+
+    </BottomChordDesign>
+
+    <WebDesign>
+
+      <CriticalCSI>0.442</CriticalCSI>
+
+      <CriticalCSIMaterial>TODO</CriticalCSIMaterial>
+
+      <NumbBracedWebs>4</NumbBracedWebs>
+
+      <BoardFootage>13.333333</BoardFootage>
+
+    </WebDesign>
+
+    <PlatingDesign>
+
+      <Manufacturer>Eagle Metal</Manufacturer>
+
+      <SquareInches>
+
+        <Total_All>288.000000</Total_All>
+
+        <Total_HS20ga>0.000000</Total_HS20ga>
+
+        <Total_HS18ga>0.000000</Total_HS18ga>
+
+        <Total_20ga>288.000000</Total_20ga>
+
+        <Total_18ga>0.000000</Total_18ga>
+
+        <Total_16ga>0.000000</Total_16ga>
+
+      </SquareInches>
+
+    </PlatingDesign>
+
+  </DesignInfo>
+
+  <TwoDistancealInfo>
+
+    <Width>1.500000</Width>
+
+    <Pieces NumbPieces="9">
+
+      <Piece Label="T1" NumbPoints="4" Type="TC">
+
+        <PieceLengths>
+
+          <ShortSide>151.789328</ShortSide>
+
+          <LongSide>151.789328</LongSide>
+
+          <Centerline>151.789328</Centerline>
+
+          <Overall>152.955994</Overall>
+
+          <Corner2Corner>152.996033</Corner2Corner>
+
+          <PiecePick>168.000000</PiecePick>
+
+        </PieceLengths>
+
+        <Material>
+
+          <Text>DFL #1  2 x  4</Text>
+
+          <Species>DFL</Species>
+
+          <Grade>#1</Grade>
+
+          <NominalThickness>2</NominalThickness>
+
+          <NominalWidth>4</NominalWidth>
+
+          <Treatment>None</Treatment>
+
+        </Material>
+
+        <BevelInformation>
+
+          <LeftEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </LeftEndBevel>
+
+          <RightEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </RightEndBevel>
+
+        </BevelInformation>
+
+        <Vertical>N</Vertical>
+
+        <Point X="0.000000" Y="0.250000"/>
+
+        <Point X="0.000000" Y="3.939324"/>
+
+        <Point X="144.000000" Y="51.939324"/>
+
+        <Point X="144.000000" Y="48.250000"/>
+
+      </Piece>
+
+      <Piece Label="T2" NumbPoints="4" Type="TC">
+
+        <PieceLengths>
+
+          <ShortSide>151.789328</ShortSide>
+
+          <LongSide>151.789328</LongSide>
+
+          <Centerline>151.789328</Centerline>
+
+          <Overall>152.955994</Overall>
+
+          <Corner2Corner>152.996033</Corner2Corner>
+
+          <PiecePick>168.000000</PiecePick>
+
+        </PieceLengths>
+
+        <Material>
+
+          <Text>DFL #1  2 x  4</Text>
+
+          <Species>DFL</Species>
+
+          <Grade>#1</Grade>
+
+          <NominalThickness>2</NominalThickness>
+
+          <NominalWidth>4</NominalWidth>
+
+          <Treatment>None</Treatment>
+
+        </Material>
+
+        <BevelInformation>
+
+          <LeftEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </LeftEndBevel>
+
+          <RightEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </RightEndBevel>
+
+        </BevelInformation>
+
+        <Vertical>N</Vertical>
+
+        <Point X="288.000000" Y="0.250000"/>
+
+        <Point X="144.000000" Y="48.250000"/>
+
+        <Point X="144.000000" Y="51.939324"/>
+
+        <Point X="288.000000" Y="3.939324"/>
+
+      </Piece>
+
+      <Piece Label="B1" NumbPoints="5" Type="BC">
+
+        <PieceLengths>
+
+          <ShortSide>110.250000</ShortSide>
+
+          <LongSide>120.000000</LongSide>
+
+          <Centerline>115.500000</Centerline>
+
+          <Overall>120.000000</Overall>
+
+          <Corner2Corner>120.051031</Corner2Corner>
+
+          <PiecePick>120.000000</PiecePick>
+
+        </PieceLengths>
+
+        <Material>
+
+          <Text>DFL #1  2 x  4</Text>
+
+          <Species>DFL</Species>
+
+          <Grade>#1</Grade>
+
+          <NominalThickness>2</NominalThickness>
+
+          <NominalWidth>4</NominalWidth>
+
+          <Treatment>None</Treatment>
+
+        </Material>
+
+        <BevelInformation>
+
+          <LeftEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </LeftEndBevel>
+
+          <RightEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </RightEndBevel>
+
+        </BevelInformation>
+
+        <Vertical>N</Vertical>
+
+        <Point X="168.000000" Y="0.000000"/>
+
+        <Point X="168.000000" Y="3.500000"/>
+
+        <Point X="278.250000" Y="3.500000"/>
+
+        <Point X="288.000000" Y="0.250000"/>
+
+        <Point X="288.000000" Y="0.000000"/>
+
+      </Piece>
+
+      <Piece Label="B2" NumbPoints="5" Type="BC">
+
+        <PieceLengths>
+
+          <ShortSide>158.250000</ShortSide>
+
+          <LongSide>168.000000</LongSide>
+
+          <Centerline>163.500000</Centerline>
+
+          <Overall>168.000000</Overall>
+
+          <Corner2Corner>168.036454</Corner2Corner>
+
+          <PiecePick>168.000000</PiecePick>
+
+        </PieceLengths>
+
+        <Material>
+
+          <Text>DFL #1  2 x  4</Text>
+
+          <Species>DFL</Species>
+
+          <Grade>#1</Grade>
+
+          <NominalThickness>2</NominalThickness>
+
+          <NominalWidth>4</NominalWidth>
+
+          <Treatment>None</Treatment>
+
+        </Material>
+
+        <BevelInformation>
+
+          <LeftEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </LeftEndBevel>
+
+          <RightEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </RightEndBevel>
+
+        </BevelInformation>
+
+        <Vertical>N</Vertical>
+
+        <Point X="0.000000" Y="0.000000"/>
+
+        <Point X="0.000000" Y="0.250000"/>
+
+        <Point X="9.750000" Y="3.500000"/>
+
+        <Point X="168.000000" Y="3.500000"/>
+
+        <Point X="168.000000" Y="0.000000"/>
+
+      </Piece>
+
+      <Piece Label="W1" NumbPoints="4" Type="Web">
+
+        <PieceLengths>
+
+          <ShortSide>20.166667</ShortSide>
+
+          <LongSide>21.333333</LongSide>
+
+          <Centerline>20.750000</Centerline>
+
+          <Overall>21.333333</Overall>
+
+          <Corner2Corner>21.618536</Corner2Corner>
+
+          <PiecePick>24.000000</PiecePick>
+
+        </PieceLengths>
+
+        <Material>
+
+          <Text>WW Stud  2 x  4</Text>
+
+          <Species>WW</Species>
+
+          <Grade>Stud</Grade>
+
+          <NominalThickness>2</NominalThickness>
+
+          <NominalWidth>4</NominalWidth>
+
+          <Treatment>None</Treatment>
+
+        </Material>
+
+        <BevelInformation>
+
+          <LeftEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </LeftEndBevel>
+
+          <RightEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </RightEndBevel>
+
+        </BevelInformation>
+
+        <Vertical>Y</Vertical>
+
+        <Point X="70.250000" Y="3.500000"/>
+
+        <Point X="70.250000" Y="23.666667"/>
+
+        <Point X="73.750000" Y="24.833333"/>
+
+        <Point X="73.750000" Y="3.500000"/>
+
+      </Piece>
+
+      <Piece Label="W2" NumbPoints="6" Type="Web">
+
+        <PieceLengths>
+
+          <ShortSide>65.580959</ShortSide>
+
+          <LongSide>68.767710</LongSide>
+
+          <Centerline>71.745112</Centerline>
+
+          <Overall>71.745112</Overall>
+
+          <Corner2Corner>71.745112</Corner2Corner>
+
+          <PiecePick>72.000000</PiecePick>
+
+        </PieceLengths>
+
+        <Material>
+
+          <Text>WW Stud  2 x  4</Text>
+
+          <Species>WW</Species>
+
+          <Grade>Stud</Grade>
+
+          <NominalThickness>2</NominalThickness>
+
+          <NominalWidth>4</NominalWidth>
+
+          <Treatment>None</Treatment>
+
+        </Material>
+
+        <BevelInformation>
+
+          <LeftEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </LeftEndBevel>
+
+          <RightEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </RightEndBevel>
+
+        </BevelInformation>
+
+        <Vertical>N</Vertical>
+
+        <Point X="136.364659" Y="3.500000"/>
+
+        <Point X="73.750000" Y="23.000429"/>
+
+        <Point X="73.750000" Y="24.833333"/>
+
+        <Point X="76.592731" Y="25.780910"/>
+
+        <Point X="142.250000" Y="5.332904"/>
+
+        <Point X="142.250000" Y="3.500000"/>
+
+      </Piece>
+
+      <Piece Label="W3" NumbPoints="5" Type="Web">
+
+        <PieceLengths>
+
+          <ShortSide>44.166667</ShortSide>
+
+          <LongSide>44.166667</LongSide>
+
+          <Centerline>44.750000</Centerline>
+
+          <Overall>44.750000</Overall>
+
+          <Corner2Corner>44.784205</Corner2Corner>
+
+          <PiecePick>48.000000</PiecePick>
+
+        </PieceLengths>
+
+        <Material>
+
+          <Text>WW Stud  2 x  4</Text>
+
+          <Species>WW</Species>
+
+          <Grade>Stud</Grade>
+
+          <NominalThickness>2</NominalThickness>
+
+          <NominalWidth>4</NominalWidth>
+
+          <Treatment>None</Treatment>
+
+        </Material>
+
+        <BevelInformation>
+
+          <LeftEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </LeftEndBevel>
+
+          <RightEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </RightEndBevel>
+
+        </BevelInformation>
+
+        <Vertical>Y</Vertical>
+
+        <Point X="142.250000" Y="3.500000"/>
+
+        <Point X="142.250000" Y="47.666667"/>
+
+        <Point X="144.000000" Y="48.250000"/>
+
+        <Point X="145.750000" Y="47.666667"/>
+
+        <Point X="145.750000" Y="3.500000"/>
+
+      </Piece>
+
+      <Piece Label="W4" NumbPoints="6" Type="Web">
+
+        <PieceLengths>
+
+          <ShortSide>65.580959</ShortSide>
+
+          <LongSide>68.767710</LongSide>
+
+          <Centerline>71.745112</Centerline>
+
+          <Overall>71.745112</Overall>
+
+          <Corner2Corner>71.745112</Corner2Corner>
+
+          <PiecePick>72.000000</PiecePick>
+
+        </PieceLengths>
+
+        <Material>
+
+          <Text>WW Stud  2 x  4</Text>
+
+          <Species>WW</Species>
+
+          <Grade>Stud</Grade>
+
+          <NominalThickness>2</NominalThickness>
+
+          <NominalWidth>4</NominalWidth>
+
+          <Treatment>None</Treatment>
+
+        </Material>
+
+        <BevelInformation>
+
+          <LeftEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </LeftEndBevel>
+
+          <RightEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </RightEndBevel>
+
+        </BevelInformation>
+
+        <Vertical>N</Vertical>
+
+        <Point X="145.750000" Y="3.500000"/>
+
+        <Point X="145.750000" Y="5.332904"/>
+
+        <Point X="211.407269" Y="25.780910"/>
+
+        <Point X="214.250000" Y="24.833333"/>
+
+        <Point X="214.250000" Y="23.000429"/>
+
+        <Point X="151.635341" Y="3.500000"/>
+
+      </Piece>
+
+      <Piece Label="W5" NumbPoints="4" Type="Web">
+
+        <PieceLengths>
+
+          <ShortSide>20.166667</ShortSide>
+
+          <LongSide>21.333333</LongSide>
+
+          <Centerline>20.750000</Centerline>
+
+          <Overall>21.333333</Overall>
+
+          <Corner2Corner>21.618536</Corner2Corner>
+
+          <PiecePick>24.000000</PiecePick>
+
+        </PieceLengths>
+
+        <Material>
+
+          <Text>WW Stud  2 x  4</Text>
+
+          <Species>WW</Species>
+
+          <Grade>Stud</Grade>
+
+          <NominalThickness>2</NominalThickness>
+
+          <NominalWidth>4</NominalWidth>
+
+          <Treatment>None</Treatment>
+
+        </Material>
+
+        <BevelInformation>
+
+          <LeftEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </LeftEndBevel>
+
+          <RightEndBevel>
+
+            <BevelType>None</BevelType>
+
+            <BevelAngle>0.00</BevelAngle>
+
+          </RightEndBevel>
+
+        </BevelInformation>
+
+        <Vertical>Y</Vertical>
+
+        <Point X="214.250000" Y="3.500000"/>
+
+        <Point X="214.250000" Y="24.833333"/>
+
+        <Point X="217.750000" Y="23.666667"/>
+
+        <Point X="217.750000" Y="3.500000"/>
+
+      </Piece>
+
+    </Pieces>
+
+    <Plates NumbPlates="9">
+
+      <Plate Label="3x8 20 ga." Width="3.000000" Length="8.000000" Gauge="20" Angle="-0.000" JointNo="1" SplicePlate="" Type="Eagle">
+
+        <PlatePts NumbPltPoints="4">
+
+          <Point X="0.875000" Y="0.375000"/>
+
+          <Point X="8.875000" Y="0.375000"/>
+
+          <Point X="8.875000" Y="3.375000"/>
+
+          <Point X="0.875000" Y="3.375000"/>
+
+        </PlatePts>
+
+      </Plate>
+
+      <Plate Label="3x4 20 ga." Width="3.000000" Length="4.000000" Gauge="20" Angle="18.435" JointNo="2" SplicePlate="" Type="Eagle">
+
+        <PlatePts NumbPltPoints="4">
+
+          <Point X="72.326975" Y="22.777853"/>
+
+          <Point X="76.121708" Y="24.042764"/>
+
+          <Point X="75.173025" Y="26.888814"/>
+
+          <Point X="71.378292" Y="25.623903"/>
+
+        </PlatePts>
+
+      </Plate>
+
+      <Plate Label="4x5 20 ga." Width="4.000000" Length="5.000000" Gauge="20" Angle="0.000" JointNo="3" SplicePlate="" Type="Eagle">
+
+        <PlatePts NumbPltPoints="4">
+
+          <Point X="141.500000" Y="46.250000"/>
+
+          <Point X="146.500000" Y="46.250000"/>
+
+          <Point X="146.500000" Y="50.250000"/>
+
+          <Point X="141.500000" Y="50.250000"/>
+
+        </PlatePts>
+
+      </Plate>
+
+      <Plate Label="3x4 20 ga." Width="3.000000" Length="4.000000" Gauge="20" Angle="-18.435" JointNo="4" SplicePlate="" Type="Eagle">
+
+        <PlatePts NumbPltPoints="4">
+
+          <Point X="216.621708" Y="25.623903"/>
+
+          <Point X="212.826975" Y="26.888814"/>
+
+          <Point X="211.878292" Y="24.042764"/>
+
+          <Point X="215.673025" Y="22.777853"/>
+
+        </PlatePts>
+
+      </Plate>
+
+      <Plate Label="3x8 20 ga." Width="3.000000" Length="8.000000" Gauge="20" Angle="-0.000" JointNo="5" SplicePlate="" Type="Eagle">
+
+        <PlatePts NumbPltPoints="4">
+
+          <Point X="279.125000" Y="0.375000"/>
+
+          <Point X="287.125000" Y="0.375000"/>
+
+          <Point X="287.125000" Y="3.375000"/>
+
+          <Point X="279.125000" Y="3.375000"/>
+
+        </PlatePts>
+
+      </Plate>
+
+      <Plate Label="1.5x3 20 ga." Width="1.500000" Length="3.000000" Gauge="20" Angle="90.000" JointNo="6" SplicePlate="" Type="Eagle">
+
+        <PlatePts NumbPltPoints="4">
+
+          <Point X="216.750000" Y="2.000000"/>
+
+          <Point X="216.750000" Y="5.000000"/>
+
+          <Point X="215.250000" Y="5.000000"/>
+
+          <Point X="215.250000" Y="2.000000"/>
+
+        </PlatePts>
+
+      </Plate>
+
+      <Plate Label="3x5 20 ga." Width="3.000000" Length="5.000000" Gauge="20" Angle="0.000" JointNo="7" SplicePlate="BCOFFPS" Type="Eagle">
+
+        <PlatePts NumbPltPoints="4">
+
+          <Point X="165.500000" Y="0.250000"/>
+
+          <Point X="170.500000" Y="0.250000"/>
+
+          <Point X="170.500000" Y="3.250000"/>
+
+          <Point X="165.500000" Y="3.250000"/>
+
+        </PlatePts>
+
+      </Plate>
+
+      <Plate Label="4x7 20 ga." Width="4.000000" Length="7.000000" Gauge="20" Angle="0.000" JointNo="8" SplicePlate="" Type="Eagle">
+
+        <PlatePts NumbPltPoints="4">
+
+          <Point X="140.500000" Y="1.500000"/>
+
+          <Point X="147.500000" Y="1.500000"/>
+
+          <Point X="147.500000" Y="5.500000"/>
+
+          <Point X="140.500000" Y="5.500000"/>
+
+        </PlatePts>
+
+      </Plate>
+
+      <Plate Label="1.5x3 20 ga." Width="1.500000" Length="3.000000" Gauge="20" Angle="90.000" JointNo="9" SplicePlate="" Type="Eagle">
+
+        <PlatePts NumbPltPoints="4">
+
+          <Point X="72.750000" Y="2.000000"/>
+
+          <Point X="72.750000" Y="5.000000"/>
+
+          <Point X="71.250000" Y="5.000000"/>
+
+          <Point X="71.250000" Y="2.000000"/>
+
+        </PlatePts>
+
+      </Plate>
+
+    </Plates>
+
+    <BearingCombos NumbBrgCombos="1">
+
+      <BearingCombo>
+
+        <Bearings NumbBearings="2">
+
+          <Bearing>
+
+            <BrgPoints NumbPoints="4">
+
+              <Point X="0.000000" Y="0.000000"/>
+
+              <Point X="3.500000" Y="0.000000"/>
+
+              <Point X="0.000000" Y="-3.000000"/>
+
+              <Point X="3.500000" Y="-3.000000"/>
+
+            </BrgPoints>
+
+          </Bearing>
+
+          <Bearing>
+
+            <BrgPoints NumbPoints="4">
+
+              <Point X="284.500000" Y="0.000000"/>
+
+              <Point X="288.000000" Y="0.000000"/>
+
+              <Point X="284.500000" Y="-3.000000"/>
+
+              <Point X="288.000000" Y="-3.000000"/>
+
+            </BrgPoints>
+
+          </Bearing>
+
+        </Bearings>
+
+      </BearingCombo>
+
+    </BearingCombos>
+
+  </TwoDistancealInfo>
+
+  <JigSettings NumbPoints="11">
+
+    <Point Type="TopHeel" X="0.000" Y="3.939"/>
+
+    <Point Type="TopChord" X="72.000" Y="27.939"/>
+
+    <Point Type="TopChord" X="144.000" Y="51.939"/>
+
+    <Point Type="TopChord" X="216.000" Y="27.939"/>
+
+    <Point Type="TopHeel" X="288.000" Y="3.939"/>
+
+    <Point Type="BottomHeel" X="288.000" Y="0.000"/>
+
+    <Point Type="BottomChord" X="216.000" Y="0.000"/>
+
+    <Point Type="BottomChord" X="168.000" Y="0.000"/>
+
+    <Point Type="BottomChord" X="144.000" Y="0.000"/>
+
+    <Point Type="BottomChord" X="72.000" Y="0.000"/>
+
+    <Point Type="BottomHeel" X="0.000" Y="0.000"/>
+
+  </JigSettings>
+
+  <LaborFactors>
+
+    <Cantilever>0</Cantilever>
+
+    <EndDetailLeft>0</EndDetailLeft>
+
+    <EndDetailRight>0</EndDetailRight>
+
+    <BeamPocket>N</BeamPocket>
+
+  </LaborFactors>
+
+</TrussDetails>
+
