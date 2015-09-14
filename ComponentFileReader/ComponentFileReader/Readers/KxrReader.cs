@@ -1,14 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Xml;
+using ComponentFileReader.FileClasses;
 using ComponentFileReader.LumberClass;
 using GeometryClassLibrary;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnitClassLibrary;
 
 namespace ComponentFileReader.Readers
 {
-    public enum BoundaryJointType { Fixed, Pin, HorizontalRoller, VerticalRoller, Released }
-
     public class KxrReader
     {
         /// <summary>
@@ -16,11 +19,13 @@ namespace ComponentFileReader.Readers
         /// </summary>
         public Component Parse(string kxrContents)
         {
-            // reads the single string as XML text
+            KxrComponent kxr = new KxrComponent(kxrContents);
+
             using (XmlReader reader = XmlReader.Create(new StringReader(kxrContents)))
             {
-                // reads the name of the truss
                 reader.ReadToFollowing("TrussDetails");
+
+
                 reader.MoveToFirstAttribute();
                 var name = reader.Value;
 
@@ -29,14 +34,13 @@ namespace ComponentFileReader.Readers
                 var trussType = ((trussTypeString == "Roof") ? ComponentType.Roof : ComponentType.Floor);
 
                 reader.ReadToFollowing("Span");
-                var Span = new Distance(DistanceType.Foot, reader.ReadElementContentAsDouble());
+                var span = new Distance(DistanceType.Foot, reader.ReadElementContentAsDouble());
 
                 reader.ReadToFollowing("LtOverhang");
                 var leftOverhangDistance = Distance.MakeDistanceWithInches(reader.ReadElementContentAsDouble());
                 reader.ReadToFollowing("RtOverhang");
                 var rightOverhangDistance = Distance.MakeDistanceWithInches(reader.ReadElementContentAsDouble());
 
-                // reads left and right heels
                 reader.ReadToFollowing("LtHeelHeight");
                 var leftHeelHeight = reader.ReadElementContentAsDouble();
                 reader.ReadToFollowing("RtHeelHeight");
@@ -45,10 +49,8 @@ namespace ComponentFileReader.Readers
                 reader.ReadToFollowing("Plies");
                 var plies = reader.ReadElementContentAsInt();
 
-                // reads premilinary information for bearings
                 List<Bearing> prelimBearing = GetPrelimBearing(reader);
 
-                // reads truss type
                 //newTruss.TrussFunction = XMLGenerateTrussType(reader);
 
                 var members = XMLGenerateMembers(reader);
@@ -302,7 +304,7 @@ namespace ComponentFileReader.Readers
                 var vector2 = new Vector(Point.MakePointWithInches(0, 0, 1.5));
 
                 var polygon = Polygon.MakeParallelogram(vector1, vector2, pointList[0]);
-                prelimBearing[i].Geometry =  polygon;
+                prelimBearing[i].Geometry = polygon;
             }
 
             return fullBearings;
@@ -346,7 +348,7 @@ namespace ComponentFileReader.Readers
 
         private static ComponentFunction GetTrussType(bool[] type)
         {
-            ComponentFunction functionToReturn = ComponentFunction.Normal;
+            ComponentFunction functionToReturn = ComponentFunction.Gable;
 
             for (int i = 0; i < type.Length; i++)
             {
@@ -370,12 +372,6 @@ namespace ComponentFileReader.Readers
                     case 5:
                         functionToReturn = ComponentFunction.Attic;
                         break;
-                    case 6:
-                        functionToReturn = ComponentFunction.Ag;
-                        break;
-                    case 7:
-                        functionToReturn = ComponentFunction.Reversed;
-                        break;
                     case 8:
                         functionToReturn = ComponentFunction.StructuralGable;
                         break;
@@ -390,16 +386,16 @@ namespace ComponentFileReader.Readers
         /// </summary>
         /// <param name="passedString">string for fixity type</param>
         /// <returns>the fixity type</returns>
-        private static BoundaryJointType FixityasEnum(string passedString)
+        private static JointFixityType FixityasEnum(string passedString)
         {
             switch (passedString)
             {
                 case "HROLL":
-                    return BoundaryJointType.HorizontalRoller;
+                    return JointFixityType.HorizontalRoller;
                 case "VROLL":
-                    return BoundaryJointType.VerticalRoller;
+                    return JointFixityType.VerticalRoller;
                 case "PIN":
-                    return BoundaryJointType.Pin;
+                    return JointFixityType.Pin;
                 default:
                     throw new IOException("The KXR file BoundaryJointType was not formatted as Expected, found instead: " + passedString);
             }

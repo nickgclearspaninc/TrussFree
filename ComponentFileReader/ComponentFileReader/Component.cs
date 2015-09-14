@@ -3,7 +3,9 @@ using Newtonsoft.Json;
 
 namespace ComponentFileReader
 {
-    public enum ComponentFunction { Gable, Girder, Hip, Jack, Rafter, Attic, Ag, Reversed, StructuralGable, Normal }
+    public enum JointFixityType { Fixed, Pin, HorizontalRoller, VerticalRoller, Released }
+
+    public enum ComponentFunction { Gable, Girder, Hip, Jack, Rafter, Attic, StructuralGable }
 
     public enum ComponentType { Roof, Floor }
 
@@ -11,31 +13,35 @@ namespace ComponentFileReader
     public class Component
     {
         [JsonProperty]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
         [JsonProperty]
-        public List<Bearing> Bearings { get; set; }
+        public virtual List<Bearing> Bearings { get; set; }
 
         [JsonProperty]
-        public List<PlateConnector> PlateConnectors { get; set; }
+        public virtual List<PlateConnector> Plates { get; set; }
 
         [JsonProperty]
-        public List<Member> Members { get; set; }
+        public virtual List<Member> Members { get; set; }
 
         [JsonProperty]
-        public ComponentType ComponentType { get; set; }
+        public virtual ComponentType ComponentType { get; set; }
 
         [JsonProperty]
-        public ComponentFunction ComponentFunction { get; set; }
+        public virtual HashSet<ComponentFunction> ComponentFunctions { get; set; }
 
         [JsonConstructor]
-        public Component(List<Member> members, List<Bearing> bearings, List<PlateConnector> plateConnectors , ComponentType componentType, string name = "", ComponentFunction componentFunction = ComponentFunction.Normal)
+        public Component(List<Member> members, List<Bearing> bearings, List<PlateConnector> plateConnectors, ComponentType componentType, string name = "")
         {
             this.Name = name;
             this.Members = members;
             this.Bearings = bearings;
-            this.PlateConnectors = plateConnectors;
+            this.Plates = plateConnectors;
         }
 
+        protected Component()
+        {
+
+        }
     }
 }
