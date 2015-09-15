@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 using ComponentFileReader;
 using ComponentFileReader.FileClasses;
-using ComponentFileReader.Readers;
 using FluentAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -27,7 +27,7 @@ namespace ComponentFileReaderTests
 
             bool sameName = (component.Name == deserializedComponent.Name);
             bool sameMembers = (component.Members.Count == deserializedComponent.Members.Count);
-            bool samePlates = (component.Plates.Count == deserializedComponent.Plates.Count);
+            bool samePlates = (component.PlateConnectors.Count == deserializedComponent.PlateConnectors.Count);
             bool sameBearings = (component.Bearings.Count == deserializedComponent.Bearings.Count);
 
 
@@ -38,6 +38,8 @@ namespace ComponentFileReaderTests
         public void Parse_Kxr()
         {
             KxrComponent component = new KxrComponent(Encoding.UTF8.GetString(ComponentFiles.eagle));
+
+            // Native variable checks
             component.Name.Should().Be("eagle");
             component.AppVersion.Should().Be("Truss v5.03 [Build 0030]");
             component.XmlVersion.Should().Be("10");
@@ -55,19 +57,73 @@ namespace ComponentFileReaderTests
             component.WeightPerPly.Should().Be("83");
             component.Spacing.Should().Be("24");
             component.ComponentFunctions.Count.Should().Be(0);
+            component.ZWidth.Should().Be("1.500000");
+            component.Pieces.Count.Should().Be(9);
+            component.Plates.Count.Should().Be(9);
+
+            // Component variable checks
+            component.Members.Count.Should().Be(9);
+        }
+
+        [Test()]
+        public void ReadWrtieCompareWithOriginal_Kxr()
+        {
+            KxrComponent component = new KxrComponent(Encoding.UTF8.GetString(ComponentFiles.eagle));
+
+            component.Name.Should().Be("eagle");
+
+            XmlDocument output = new XmlDocument();
+
+            output = component.GetXML();
+
+            KxrComponent outputComponent = new KxrComponent(output.OuterXml);
+
+            outputComponent.Name.Should().Be("eagle");
+            outputComponent.AppVersion.Should().Be("Truss v5.03 [Build 0030]");
+            outputComponent.XmlVersion.Should().Be("10");
+            outputComponent.ComponentType.Should().Be(ComponentType.Roof);
+            outputComponent.TrussFamily.Should().Be("1");
+            outputComponent.Span.Should().Be("288.000000");
+            outputComponent.Pitch.Should().Be("4 /12");
+            outputComponent.Quantity.Should().Be("1");
+            outputComponent.PricingQuantity.Should().Be("0");
+            outputComponent.LtOverhang.Should().Be("0.000000");
+            outputComponent.RtOverhang.Should().Be("0.000000");
+            outputComponent.LtHeelHeight.Should().Be("3.939324");
+            outputComponent.RtHeelHeight.Should().Be("3.939324");
+            outputComponent.Plies.Should().Be("1");
+            outputComponent.WeightPerPly.Should().Be("83");
+            outputComponent.Spacing.Should().Be("24");
+            outputComponent.ComponentFunctions.Count.Should().Be(0);
+        }
+
+        [Test()] public void WriteToFile_Kxr()
+        {
+            KxrComponent component = new KxrComponent(Encoding.UTF8.GetString(ComponentFiles.eagle));
+
+            component.Name = "changedName";
+
+            XmlDocument output = new XmlDocument();
+
+            output = component.GetXML();
+
+            using (XmlWriter writer = XmlWriter.Create("modified.kxr"))
+            {
+                writer.WriteRaw(output.OuterXml);
+            }
         }
 
         [Test()]
         public void Parse_Tre()
         {
-            Component component = new TreReader().Parse(Encoding.UTF8.GetString(ComponentFiles.mitek));
+            Component component = new TreComponent().Parse(Encoding.UTF8.GetString(ComponentFiles.mitek));
             Assert.Fail();
         }
 
         [Test()]
         public void Parse_Trs()
         {
-            Component component = new TrsReader().Parse(Encoding.UTF8.GetString(ComponentFiles.computruss));
+            Component component = new TrsComponent().Parse(Encoding.UTF8.GetString(ComponentFiles.computruss));
             Assert.Fail();
         }
     }

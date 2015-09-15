@@ -23,7 +23,7 @@ namespace ComponentFileReader.FileClasses
             set { throw new System.NotImplementedException(); }
         }
 
-        public override List<PlateConnector> Plates
+        public override List<PlateConnector> PlateConnectors
         {
             get { throw new System.NotImplementedException(); }
             set { throw new System.NotImplementedException(); }
@@ -32,6 +32,11 @@ namespace ComponentFileReader.FileClasses
         public TreComponent():base(null,null,null,ComponentType.Floor)
         {
             
+        }
+
+        public Component Parse(string getString)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

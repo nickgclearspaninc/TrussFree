@@ -60,10 +60,7 @@
     <Compile Include="Member.cs" />
     <Compile Include="PlateConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Readers\KxrReader.cs" />
     <Compile Include="FileClasses\TreComponent.cs" />
-    <Compile Include="Readers\TreReader.cs" />
-    <Compile Include="Readers\TrsReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\geometry-class-library\GeometryClassLibrary\GeometryClassLibrary.csproj">

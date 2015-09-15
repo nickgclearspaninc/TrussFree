@@ -8,5 +8,9 @@ namespace ComponentFileReader.FileClasses
 {
     public class TrsComponent
     {
+        public Component Parse(string getString)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

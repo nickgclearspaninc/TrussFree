@@ -19,7 +19,7 @@ namespace ComponentFileReader
         public virtual List<Bearing> Bearings { get; set; }
 
         [JsonProperty]
-        public virtual List<PlateConnector> Plates { get; set; }
+        public virtual List<PlateConnector> PlateConnectors { get; set; }
 
         [JsonProperty]
         public virtual List<Member> Members { get; set; }
@@ -36,12 +36,17 @@ namespace ComponentFileReader
             this.Name = name;
             this.Members = members;
             this.Bearings = bearings;
-            this.Plates = plateConnectors;
+            this.PlateConnectors = plateConnectors;
         }
 
         protected Component()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return this.Name;
         }
     }
 }
