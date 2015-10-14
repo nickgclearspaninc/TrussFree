@@ -1,2 +1,2 @@
 # component-file-reader
-code for reading various kinds of component files
+This repo contains code for reading and writing to various kinds of component files.
