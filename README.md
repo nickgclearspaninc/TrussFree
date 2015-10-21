@@ -9,3 +9,5 @@ This project is in the early stages of development. In the near future, this lib
 * .trs
 
 and other truss component files. If you have suggestions, questions, or thoughts of any kind. Jump in [the chatroom](https://tlk.io/truss-free) and say hi. Or you create an issue in [our issue tracker](https://bitbucket.org/buildfreely/truss-free/issues?status=new&status=open)
+
+We will be updating this readme with a detailed tutorial of how to get started soon
