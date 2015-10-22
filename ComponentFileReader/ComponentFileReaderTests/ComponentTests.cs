@@ -2,7 +2,9 @@
 using System.Text;
 using System.Xml;
 using ComponentFileReader;
-using ComponentFileReader.FileClasses;
+using ComponentFileReader.FileClasses.KxrComponent;
+using ComponentFileReader.FileClasses.TreComponent;
+using ComponentFileReader.FileClasses.TrsComponent;
 using FluentAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -24,7 +26,7 @@ namespace ComponentFileReaderTests
             };
             var json = JsonConvert.SerializeObject(component, jsonSettings);
             Component deserializedComponent = JsonConvert.DeserializeObject<Component>(json, jsonSettings);
-
+            
             bool sameName = (component.Name == deserializedComponent.Name);
             bool sameMembers = (component.Members.Count == deserializedComponent.Members.Count);
             bool samePlates = (component.PlateConnectors.Count == deserializedComponent.PlateConnectors.Count);

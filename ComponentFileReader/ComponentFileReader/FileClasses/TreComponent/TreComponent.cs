@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Dynamic;
 
-namespace ComponentFileReader.FileClasses
+namespace ComponentFileReader.FileClasses.TreComponent
 {
     public class TreComponent: Component
     {
