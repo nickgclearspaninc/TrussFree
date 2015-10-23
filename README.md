@@ -8,6 +8,11 @@ This project is in the early stages of development. In the near future, this lib
 * .kxr
 * .trs
 
-and other truss component files. **If you have suggestions, questions, or thoughts of any kind, jump in the [chatroom](https://tlk.io/truss-free) and say hi.** Or you can create an issue in [our issue tracker](https://bitbucket.org/buildfreely/truss-free/issues?status=new&status=open)
+and other truss component files. 
 
-Check out the [wiki](https://bitbucket.org/buildfreely/truss-free/wiki/Home) for details on getting started!
+This is a community project. We know our handspun solutions for reading and writing these files likely contains bugs and could use some improvement. That is why we invite you to consider contributing to the effort. If your company has written its own parsing solutions, consider how much more efficient and bug free those solutions could be if that code was located where people could inspect and improve it. 
+
+
+**If you have suggestions, questions, or thoughts of any kind, jump in the [chatroom](https://tlk.io/truss-free) and say hi.** Or you can create an issue in [our issue tracker](https://bitbucket.org/buildfreely/truss-free/issues?status=new&status=open)
+
+##Check out the [wiki](https://bitbucket.org/buildfreely/truss-free/wiki/Home) for details on getting started!
