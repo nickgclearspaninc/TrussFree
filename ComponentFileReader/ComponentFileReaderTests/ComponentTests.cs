@@ -118,7 +118,7 @@ namespace ComponentFileReaderTests
         [Test()]
         public void Parse_Tre()
         {
-            Component component = new TreComponent().Parse(Encoding.UTF8.GetString(ComponentFiles.mitek));
+            Component component = new TreComponent(Encoding.UTF8.GetString(ComponentFiles.mitek));
             Assert.Fail();
         }
 
