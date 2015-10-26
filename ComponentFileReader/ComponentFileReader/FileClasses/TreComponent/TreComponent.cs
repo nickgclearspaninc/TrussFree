@@ -2,8 +2,10 @@
 
 namespace ComponentFileReader.FileClasses.TreComponent
 {
-    public class TreComponent: Component
+    public partial class TreComponent: Component
     {
+        public string[] Contents { get; set; }
+
         public override string Name
         {
             get { throw new System.NotImplementedException(); }
@@ -28,14 +30,9 @@ namespace ComponentFileReader.FileClasses.TreComponent
             set { throw new System.NotImplementedException(); }
         }
 
-        public TreComponent():base(null,null,null,ComponentType.Floor)
+        public TreComponent(string contents)
         {
-            
-        }
-
-        public Component Parse(string getString)
-        {
-            throw new System.NotImplementedException();
+            Contents = contents.Split('\n');
         }
     }
 }
