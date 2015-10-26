@@ -18,7 +18,7 @@ namespace ComponentFileReader.FileClasses.TreComponent
                     return _treMemberInfo;
                 }
 
-                _parseMemberInfo(); // Sets _treMemberInfo (unless Contents is null)
+                _parseMemberInfo(); // Populates _treMemberInfo (unless Contents is null)
                 return _treMemberInfo;
             }
         }
