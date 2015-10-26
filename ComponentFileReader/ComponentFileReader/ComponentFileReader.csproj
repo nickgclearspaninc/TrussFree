@@ -52,15 +52,28 @@
   <ItemGroup>
     <Compile Include="Bearing.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="FileClasses\KxrComponent.cs" />
-    <Compile Include="FileClasses\TrsComponent.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrBearingCombo.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrComponentOverrides.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrComponent.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrBearing.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrComponentOriginalNodes.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrTrussType.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrPlate.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrPoint.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrPiece.cs" />
+    <Compile Include="FileClasses\TreComponent\TreMemberInfo.cs" />
+    <Compile Include="FileClasses\TreComponent\TrePoint.cs" />
+    <Compile Include="FileClasses\TreComponent\TreMember.cs" />
+    <Compile Include="FileClasses\TreComponent\TreComponentOriginalNodes.cs" />
+    <Compile Include="FileClasses\TreComponent\TreParse.cs" />
+    <Compile Include="FileClasses\TrsComponent\TrsComponent.cs" />
     <Compile Include="LumberClass\Lumber.cs" />
     <Compile Include="LumberClass\LumberDimensions.cs" />
     <Compile Include="LumberClass\LumberStaticGenerators.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="PlateConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FileClasses\TreComponent.cs" />
+    <Compile Include="FileClasses\TreComponent\TreComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\geometry-class-library\GeometryClassLibrary\GeometryClassLibrary.csproj">
