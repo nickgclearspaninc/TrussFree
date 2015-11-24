@@ -314,8 +314,314 @@ namespace ComponentFileReader.FileClasses.KxrComponent
             }
         }
 
-        //Loading
+        public KxrStandardLoading StandardLoading
+        {
+            get
+            {
+                var standardLoading = new KxrStandardLoading();
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["StandardLoading"];
+                standardLoading.TCLive = jtoken["TCLive"].ToString();
+                standardLoading.TCDead = jtoken["TCDead"].ToString();
+                standardLoading.BCLive = jtoken["BCLive"].ToString();
+                standardLoading.BCDead = jtoken["BCDead"].ToString();
+                return standardLoading;
 
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["StandardLoading"];
+                jtoken["TCLive"] = value.TCLive;
+                jtoken["TCDead"] = value.TCDead;
+                jtoken["BCLive"] = value.BCLive;
+                jtoken["BCDead"] = value.BCDead;
+            }
+        }
+
+        public KxrStandardLoading BuildingStandardLoading
+        {
+            get
+            {
+                var standardLoading = new KxrStandardLoading();
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["BuildingStandardLoading"];
+                standardLoading.TCLive = jtoken["TCLive"].ToString();
+                standardLoading.TCDead = jtoken["TCDead"].ToString();
+                standardLoading.BCLive = jtoken["BCLive"].ToString();
+                standardLoading.BCDead = jtoken["BCDead"].ToString();
+                return standardLoading;
+
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["BuildingStandardLoading"];
+                jtoken["TCLive"] = value.TCLive;
+                jtoken["TCDead"] = value.TCDead;
+                jtoken["BCLive"] = value.BCLive;
+                jtoken["BCDead"] = value.BCDead;
+            }
+        }
+        
+        public string AutomatedLiveLoadsRoofLiveLoadProvision
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["AutomatedLiveLoads"];
+                return jtoken["RoofLiveLoadProvision"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["AutomatedLiveLoads"];
+                jtoken["RoofLiveLoadProvision"] = value;
+            }
+        }
+
+        public KxrWindLoad WindLoad
+        {
+            get
+            {
+                var windLoad = new KxrWindLoad();
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["WindLoad"];
+                windLoad.UseWind = jtoken["UseWind"].ToString();
+                windLoad.WindLoadProvision = jtoken["WindLoadProvision"].ToString();
+                windLoad.WindSpeed = jtoken["WindSpeed"].ToString();
+                windLoad.ExposureCategory = jtoken["ExposureCategory"].ToString();
+                windLoad.BuildingCategory = jtoken["BuildingCategory"].ToString();
+                windLoad.HurricaneRegion = jtoken["HurricaneRegion"].ToString();
+
+                return windLoad;
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["WindLoad"];
+                jtoken["UseWind"] = value.UseWind;
+                jtoken["WindLoadProvision"] = value.WindLoadProvision;
+                jtoken["WindSpeed"] = value.WindSpeed;
+                jtoken["ExposureCategory"] = value.ExposureCategory;
+                jtoken["BuildingCategory"] = value.BuildingCategory;
+                jtoken["HurricaneRegion"] = value.HurricaneRegion;
+            }
+        }
+        public KxrSnowLoad SnowLoad
+        {
+            get
+            {
+                var windLoad = new KxrSnowLoad();
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["SnowLoad"];
+                windLoad.UseSnow = jtoken["UseSnow"].ToString();
+                windLoad.SnowLoadProvision = jtoken["SnowLoadProvision"].ToString();
+                windLoad.GroundSnowLoad = jtoken["GroundSnowLoad"].ToString();
+                windLoad.ExposureCategory = jtoken["ExposureCategory"].ToString();
+                windLoad.TerrainCategory = jtoken["TerrainCategory"].ToString();
+
+                return windLoad;
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["SnowLoad"];
+                jtoken["UseSnow"] = value.UseSnow;
+                jtoken["SnowLoadProvision"] = value.SnowLoadProvision;
+                jtoken["GroundSnowLoad"] = value.GroundSnowLoad;
+                jtoken["ExposureCategory"] = value.ExposureCategory;
+                jtoken["TerrainCategory"] = value.TerrainCategory;
+            }
+        }
+        
+        public string GirderLoading
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["GirderLoad"];
+                return jtoken["GirderLoading"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["GirderLoad"];
+                jtoken["GirderLoading"] = value;
+            }
+        }
+
+        public string BuildingCode
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                return jtoken["BuildingCode"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                jtoken["BuildingCode"] = value;
+            }
+        }
+        public string WetService
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                return jtoken["WetService"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                jtoken["WetService"] = value;
+            }
+        }
+        public string GreenLumber
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                return jtoken["GreenLumber"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                jtoken["GreenLumber"] = value;
+            }
+        }
+        public string TCBracing
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                return jtoken["TCBracing"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                jtoken["TCBracing"] = value;
+            }
+        }
+        public string BCBracing
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                return jtoken["BCBracing"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                jtoken["BCBracing"] = value;
+            }
+        }
+        public string WebBracingAutomatic
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                return jtoken["Automatic"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                jtoken["Automatic"] = value;
+            }
+        }
+        public string WebBracingAutomaticContinuousLateral
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                return jtoken["Automatic"]["@ContinuousLateral"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                jtoken["Automatic"]["@ContinuousLateral"] = value;
+            }
+        }
+        public string WebBracingAutomaticTeeBracing
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                return jtoken["Automatic"]["@TeeBracing"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                jtoken["Automatic"]["@TeeBracing"] = value;
+            }
+        }
+        public KxrDeflectionCriteria RoofDeflectionCriteria
+        {
+            get
+            {
+                var deflection = new KxrDeflectionCriteria();
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Roof"];
+                deflection.LiveLoad = jtoken["LiveLoad"].ToString();
+                deflection.TotalLoad = jtoken["TotalLoad"].ToString();
+                deflection.Cantilever = jtoken["Cantilever"].ToString();
+                deflection.Overhang = jtoken["Overhang"].ToString();
+
+                return deflection;
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Roof"];
+                jtoken["LiveLoad"] = value.LiveLoad;
+                jtoken["TotalLoad"] = value.TotalLoad;
+                jtoken["Cantilever"] = value.Cantilever;
+                jtoken["Overhang"] = value.Overhang;
+            }
+        }
+        public KxrDeflectionCriteria FloorDeflectionCriteria
+        {
+            get
+            {
+                var deflection = new KxrDeflectionCriteria();
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Floor"];
+                deflection.LiveLoad = jtoken["LiveLoad"].ToString();
+                deflection.TotalLoad = jtoken["TotalLoad"].ToString();
+                deflection.Cantilever = jtoken["Cantilever"].ToString();
+                deflection.Overhang = jtoken["Overhang"].ToString();
+
+                return deflection;
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Floor"];
+                jtoken["LiveLoad"] = value.LiveLoad;
+                jtoken["TotalLoad"] = value.TotalLoad;
+                jtoken["Cantilever"] = value.Cantilever;
+                jtoken["Overhang"] = value.Overhang;
+            }
+        }
+        /* ToDo: Ask John about this
+        public List<KxrLoadCase> LoadCases
+        {
+            get
+            {
+                var returnList = new List<KxrLoadCase>();
+
+                 var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["LoadCases"];
+
+                foreach (var loadCaseToken in jtoken.Children())
+                {
+                    KxrLoadCase loadCaseToAdd = new KxrLoadCase();
+                    loadCaseToAdd.MWFRS = loadCaseToken["@MWFRS"].ToString();
+                    loadCaseToAdd.CC = loadCaseToken["@CC"].ToString();
+                    loadCaseToAdd.Auto = loadCaseToken["@AUTO"].ToString();
+                    loadCaseToAdd.User = loadCaseToken["@USER"].ToString();
+                    loadCaseToAdd.Attic = loadCaseToken["@ATTIC"].ToString();
+                    loadCaseToAdd.TTC = loadCaseToken["@TTC"].ToString();
+                    loadCaseToAdd.AtticSto = loadCaseToken["@ATTIC_STO"].ToString();
+                    loadCaseToAdd.InternalId = loadCaseToken["@InternalId"].ToString();
+                    loadCaseToAdd.Id = loadCaseToken["Id"].ToString();
+                    loadCaseToAdd.Description = loadCaseToken["Description"].ToString();
+                    loadCaseToAdd.Type = loadCaseToken["Type"].ToString();
+                    
+                    returnList.Add(loadCaseToAdd);
+                }
+
+
+                var bearingCombos = new List<KxrBearingCombo>();
+
+                return returnList;
+            }
+        }
+        */
+        
         //General Eng Infor
 
         //Design Info

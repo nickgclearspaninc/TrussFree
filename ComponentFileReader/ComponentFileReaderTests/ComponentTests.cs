@@ -62,11 +62,78 @@ namespace ComponentFileReaderTests
             component.ZWidth.Should().Be("1.500000");
             component.Pieces.Count.Should().Be(9);
             component.Plates.Count.Should().Be(9);
-
+            component.StandardLoading.TCLive.Should().Be("20.000");
+            component.StandardLoading.TCDead.Should().Be("10.000");
+            component.StandardLoading.BCLive.Should().Be("0.000");
+            component.StandardLoading.BCDead.Should().Be("10.000");
+            component.BuildingStandardLoading.TCLive.Should().Be("20.000");
+            component.BuildingStandardLoading.TCDead.Should().Be("10.000");
+            component.BuildingStandardLoading.BCLive.Should().Be("0.000");
+            component.BuildingStandardLoading.BCDead.Should().Be("10.000");
+            component.AutomatedLiveLoadsRoofLiveLoadProvision.Should().Be("IBC 2009");
+            component.WindLoad.UseWind.Should().Be("Y");
+            component.WindLoad.WindLoadProvision.Should().Be("ASCE7 - 05");
+            component.WindLoad.WindSpeed.Should().Be("90");
+            component.WindLoad.ExposureCategory.Should().Be("C");
+            component.WindLoad.BuildingCategory.Should().Be("II");
+            component.WindLoad.HurricaneRegion.Should().Be("N");
+            component.SnowLoad.UseSnow.Should().Be("Y");
+            component.SnowLoad.SnowLoadProvision.Should().Be("ASCE7 - 05");
+            component.SnowLoad.GroundSnowLoad.Should().Be("30");
+            component.SnowLoad.ExposureCategory.Should().Be("Partial");
+            component.SnowLoad.TerrainCategory.Should().Be("Unheated");
+            component.GirderLoading.Should().Be("NoOne");
+            //component.LoadCases.Count.Should().Be(16);
+            component.BuildingCode.Should().Be("IBC 2009");
+            component.WetService.Should().Be("N");
+            component.GreenLumber.Should().Be("N");
+            component.TCBracing.Should().Be("Sheathed");
+            component.BCBracing.Should().Be("Sheathed");
+            //component.WebBracingAutomatic.Should().Be("Y");
+            //component.WebBracingAutomaticContinuousLateral.Should().Be("Y");
+            //component.WebBracingAutomaticTeeBracing.Should().Be("N");
+            component.RoofDeflectionCriteria.LiveLoad.Should().Be("360");
+            component.RoofDeflectionCriteria.TotalLoad.Should().Be("240");
+            component.RoofDeflectionCriteria.Cantilever.Should().Be("480");
+            component.RoofDeflectionCriteria.Overhang.Should().Be("120");
+            component.FloorDeflectionCriteria.LiveLoad.Should().Be("480");
+            component.FloorDeflectionCriteria.TotalLoad.Should().Be("360");
+            component.FloorDeflectionCriteria.Cantilever.Should().Be("720");
+            component.FloorDeflectionCriteria.Overhang.Should().Be("240");
             // Component variable checks
             component.Members.Count.Should().Be(9);
         }
+        [Test()]
+        public void Write_Kxr()
+        {
+            KxrComponent component = new KxrComponent(Encoding.UTF8.GetString(ComponentFiles.eagle));
 
+            component.Name = "testkxr";
+
+            // Native variable checks
+            component.Name.Should().Be("testkxr");
+            component.AppVersion.Should().Be("Truss v5.03 [Build 0030]");
+            component.XmlVersion.Should().Be("10");
+            component.ComponentType.Should().Be(ComponentType.Roof);
+            component.TrussFamily.Should().Be("1");
+            component.Span.Should().Be("288.000000");
+            component.Pitch.Should().Be("4 /12");
+            component.Quantity.Should().Be("1");
+            component.PricingQuantity.Should().Be("0");
+            component.LtOverhang.Should().Be("0.000000");
+            component.RtOverhang.Should().Be("0.000000");
+            component.LtHeelHeight.Should().Be("3.939324");
+            component.RtHeelHeight.Should().Be("3.939324");
+            component.Plies.Should().Be("1");
+            component.WeightPerPly.Should().Be("83");
+            component.Spacing.Should().Be("24");
+            component.ComponentFunctions.Count.Should().Be(0);
+            component.ZWidth.Should().Be("1.500000");
+            component.Pieces.Count.Should().Be(9);
+            component.Plates.Count.Should().Be(9);
+            // Component variable checks
+            component.Members.Count.Should().Be(9);
+        }
         [Test()]
         public void ReadWrtieCompareWithOriginal_Kxr()
         {
