@@ -219,7 +219,7 @@ namespace ComponentFileReader.FileClasses.KxrComponent
                         var vector1 = new Vector(points[0], points[1]);
                         var vector2 = new Vector(Point.MakePointWithInches(0, 0, trussThickness));
 
-                        geometry = Polygon.MakeParallelogram(vector1, vector2, points[0]);
+                        geometry = Polygon.Parallelogram(vector1, vector2, points[0]);
 
                         returnMembers.Add(new Member(lumber, memberfunction, geometry, name));
                     }
@@ -228,7 +228,7 @@ namespace ComponentFileReader.FileClasses.KxrComponent
                         var vector1 = new Vector(points[0], points[1]);
                         var vector2 = new Vector(Point.MakePointWithInches(0, 0, trussThickness));
 
-                        geometry = Polygon.MakeParallelogram(vector1, vector2, points[0]);
+                        geometry = Polygon.Parallelogram(vector1, vector2, points[0]);
 
                         returnMembers.Add(new Member(lumber, memberfunction, geometry, name));
                     }
