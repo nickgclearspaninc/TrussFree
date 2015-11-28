@@ -59,6 +59,7 @@
     <Compile Include="FileClasses\KxrComponent\KxrBearing.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrComponentOriginalNodes.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrDeflectionCriteria.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrJigPoint.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrLoadCase.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrSnowLoad.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrStandardLoading.cs" />

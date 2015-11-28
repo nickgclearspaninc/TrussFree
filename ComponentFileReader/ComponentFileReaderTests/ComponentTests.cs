@@ -40,8 +40,11 @@ namespace ComponentFileReaderTests
         public void Parse_Kxr()
         {
             KxrComponent component = new KxrComponent(Encoding.UTF8.GetString(ComponentFiles.eagle));
+            
+            #region First Truss Details
+            component.ComponentFunctions.Count.Should().Be(0);
+            component.Members.Count.Should().Be(9);
 
-            // Native variable checks
             component.Name.Should().Be("eagle");
             component.AppVersion.Should().Be("Truss v5.03 [Build 0030]");
             component.XmlVersion.Should().Be("10");
@@ -55,13 +58,29 @@ namespace ComponentFileReaderTests
             component.RtOverhang.Should().Be("0.000000");
             component.LtHeelHeight.Should().Be("3.939324");
             component.RtHeelHeight.Should().Be("3.939324");
+            component.OverallHeight.Should().Be("51.939324");
             component.Plies.Should().Be("1");
             component.WeightPerPly.Should().Be("83");
             component.Spacing.Should().Be("24");
-            component.ComponentFunctions.Count.Should().Be(0);
-            component.ZWidth.Should().Be("1.500000");
-            component.Pieces.Count.Should().Be(9);
-            component.Plates.Count.Should().Be(9);
+            #endregion
+
+            #region BearingCombos
+            //ToDo: Ask John about this component.Part1BearingCombos.Count.Should().Be(1);
+            #endregion
+
+            #region TrussType
+            component.TrussTypes.Gable.Should().Be("N");
+            component.TrussTypes.Girder.Should().Be("N");
+            component.TrussTypes.Hip.Should().Be("N");
+            component.TrussTypes.Jack.Should().Be("N");
+            component.TrussTypes.Rafter.Should().Be("N");
+            component.TrussTypes.Attic.Should().Be("N");
+            component.TrussTypes.Ag.Should().Be("N");
+            component.TrussTypes.Reversed.Should().Be("N");
+            component.TrussTypes.StructGable.Should().Be("N");
+            #endregion
+
+            #region LoadingInfo
             component.StandardLoading.TCLive.Should().Be("20.000");
             component.StandardLoading.TCDead.Should().Be("10.000");
             component.StandardLoading.BCLive.Should().Be("0.000");
@@ -83,15 +102,18 @@ namespace ComponentFileReaderTests
             component.SnowLoad.ExposureCategory.Should().Be("Partial");
             component.SnowLoad.TerrainCategory.Should().Be("Unheated");
             component.GirderLoading.Should().Be("NoOne");
-            //component.LoadCases.Count.Should().Be(16);
+            //ToDo: component.LoadCases.Count.Should().Be(16);
+            #endregion
+
+            #region GeneralEngInfo
             component.BuildingCode.Should().Be("IBC 2009");
             component.WetService.Should().Be("N");
             component.GreenLumber.Should().Be("N");
             component.TCBracing.Should().Be("Sheathed");
             component.BCBracing.Should().Be("Sheathed");
-            //component.WebBracingAutomatic.Should().Be("Y");
-            //component.WebBracingAutomaticContinuousLateral.Should().Be("Y");
-            //component.WebBracingAutomaticTeeBracing.Should().Be("N");
+            //ToDo: Fix component.WebBracingAutomatic.Should().Be("Y");
+            //ToDo: Fix component.WebBracingAutomaticContinuousLateral.Should().Be("Y");
+            //ToDo: Fix component.WebBracingAutomaticTeeBracing.Should().Be("N");
             component.RoofDeflectionCriteria.LiveLoad.Should().Be("360");
             component.RoofDeflectionCriteria.TotalLoad.Should().Be("240");
             component.RoofDeflectionCriteria.Cantilever.Should().Be("480");
@@ -100,8 +122,61 @@ namespace ComponentFileReaderTests
             component.FloorDeflectionCriteria.TotalLoad.Should().Be("360");
             component.FloorDeflectionCriteria.Cantilever.Should().Be("720");
             component.FloorDeflectionCriteria.Overhang.Should().Be("240");
-            // Component variable checks
-            component.Members.Count.Should().Be(9);
+            #endregion
+
+            #region DesignInfo
+            component.CSI.Should().Be("PASSED");
+            component.Deflection.Should().Be("PASSED");
+            component.Buckling.Should().Be("TODO");
+            component.Deflection.Should().Be("PASSED");
+            component.TotalBoardFootage.Should().Be("48.000000");
+            //ToDo: component.Part2BearingCombos.Count.Should().Be(1);
+            component.OverallDeflectionMaxVertical.Should().Be("-0.129231");
+            component.OverallDeflectionMaxHorizontal.Should().Be("0.075657");
+            component.TopChordDesignCriticalCSI.Should().Be("0.520");
+            component.TopChordDesignCriticalCSIMaterial.Should().Be("TODO");
+            component.TopChordDesignMaxTCDeflection.LiveLoad.Should().Be("-0.052281");
+            component.TopChordDesignMaxTCDeflection.TotalLoad.Should().Be("-0.129231");
+            component.TopChordDesignMaxTCDeflection.Cantilever.Should().Be("0.000000");
+            component.TopChordDesignMaxTCDeflection.Overhang.Should().Be("0.000000");
+            component.TopChordDesignBoardFootage.Should().Be("18.666667");
+            component.BottomChordDesignCriticalCSI.Should().Be("0.655");
+            component.BottomChordDesignCriticalCSIMaterial.Should().Be("TODO");
+            component.BottomChordDesignMaxBCDeflection.LiveLoad.Should().Be("-0.103727");
+            component.BottomChordDesignMaxBCDeflection.TotalLoad.Should().Be("-0.249638");
+            component.BottomChordDesignMaxBCDeflection.Cantilever.Should().Be("0.000000");
+            component.BottomChordDesignMaxBCDeflection.Overhang.Should().Be("0.000000");
+            component.BottomChordDesignBoardFootage.Should().Be("16.000000");
+            component.WebDesignCriticalCSI.Should().Be("0.442");
+            component.WebDesignCriticalCSIMaterial.Should().Be("TODO");
+            component.WebDesignNumbBracedWebs.Should().Be("4");
+            component.WebDesignBoardFootage.Should().Be("13.333333");
+            component.PlatingDesignManufacturer.Should().Be("Eagle Metal");
+            component.PlatingDesignTotalSquareInches.Should().Be("288.000000");
+            component.PlatingDesignTotal_HS20ga.Should().Be("0.000000");
+            component.PlatingDesignTotal_HS18ga.Should().Be("0.000000");
+            component.PlatingDesignTotal_20ga.Should().Be("288.000000");
+            component.PlatingDesignTotal_18ga.Should().Be("0.000000");
+            component.PlatingDesignTotal_16ga.Should().Be("0.000000");
+            #endregion
+
+            #region TwoDistancealInfo
+            component.ZWidth.Should().Be("1.500000");
+            component.Plates.Count.Should().Be(9);
+            component.Pieces.Count.Should().Be(9);
+            //ToDo: BearingCombosPart3
+            #endregion
+
+            #region JigSettings
+            //ToDo: component.JigPoints.Count.Should().Be(11);
+            #endregion
+
+            #region LaborFactors
+            component.LaborFactorsCantilever.Should().Be("0");
+            component.LaborFactorsEndDetailLeft.Should().Be("0");
+            component.LaborFactorsEndDetailRight.Should().Be("0");
+            component.LaborFactorsBeamPocket.Should().Be("N");
+            #endregion
         }
         [Test()]
         public void Write_Kxr()

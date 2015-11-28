@@ -7,6 +7,7 @@ namespace ComponentFileReader.FileClasses.KxrComponent
     {
         public JObject JsonContents;
 
+        #region First Truss Details
         public string TrussName
         {
             get
@@ -244,7 +245,9 @@ namespace ComponentFileReader.FileClasses.KxrComponent
                 jtoken["Spacing"] = value;
             }
         }
+        #endregion
 
+        #region BearingCombos
         public List<KxrBearingCombo> Part1BearingCombos
         {
             get
@@ -279,7 +282,9 @@ namespace ComponentFileReader.FileClasses.KxrComponent
                 return returnList;
             }
         }
+        #endregion
 
+        #region TrussType
         public KxrTrussType TrussTypes
         {
             get
@@ -313,7 +318,9 @@ namespace ComponentFileReader.FileClasses.KxrComponent
                 jtoken["StructGable"] = value.StructGable;
             }
         }
+        #endregion
 
+        #region LoadingInfo
         public KxrStandardLoading StandardLoading
         {
             get
@@ -400,6 +407,7 @@ namespace ComponentFileReader.FileClasses.KxrComponent
                 jtoken["HurricaneRegion"] = value.HurricaneRegion;
             }
         }
+
         public KxrSnowLoad SnowLoad
         {
             get
@@ -439,154 +447,6 @@ namespace ComponentFileReader.FileClasses.KxrComponent
             }
         }
 
-        public string BuildingCode
-        {
-            get
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
-                return jtoken["BuildingCode"].ToString();
-            }
-            set
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
-                jtoken["BuildingCode"] = value;
-            }
-        }
-        public string WetService
-        {
-            get
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
-                return jtoken["WetService"].ToString();
-            }
-            set
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
-                jtoken["WetService"] = value;
-            }
-        }
-        public string GreenLumber
-        {
-            get
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
-                return jtoken["GreenLumber"].ToString();
-            }
-            set
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
-                jtoken["GreenLumber"] = value;
-            }
-        }
-        public string TCBracing
-        {
-            get
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
-                return jtoken["TCBracing"].ToString();
-            }
-            set
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
-                jtoken["TCBracing"] = value;
-            }
-        }
-        public string BCBracing
-        {
-            get
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
-                return jtoken["BCBracing"].ToString();
-            }
-            set
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
-                jtoken["BCBracing"] = value;
-            }
-        }
-        public string WebBracingAutomatic
-        {
-            get
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                return jtoken["Automatic"].ToString();
-            }
-            set
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                jtoken["Automatic"] = value;
-            }
-        }
-        public string WebBracingAutomaticContinuousLateral
-        {
-            get
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                return jtoken["Automatic"]["@ContinuousLateral"].ToString();
-            }
-            set
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                jtoken["Automatic"]["@ContinuousLateral"] = value;
-            }
-        }
-        public string WebBracingAutomaticTeeBracing
-        {
-            get
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                return jtoken["Automatic"]["@TeeBracing"].ToString();
-            }
-            set
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                jtoken["Automatic"]["@TeeBracing"] = value;
-            }
-        }
-        public KxrDeflectionCriteria RoofDeflectionCriteria
-        {
-            get
-            {
-                var deflection = new KxrDeflectionCriteria();
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Roof"];
-                deflection.LiveLoad = jtoken["LiveLoad"].ToString();
-                deflection.TotalLoad = jtoken["TotalLoad"].ToString();
-                deflection.Cantilever = jtoken["Cantilever"].ToString();
-                deflection.Overhang = jtoken["Overhang"].ToString();
-
-                return deflection;
-            }
-            set
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Roof"];
-                jtoken["LiveLoad"] = value.LiveLoad;
-                jtoken["TotalLoad"] = value.TotalLoad;
-                jtoken["Cantilever"] = value.Cantilever;
-                jtoken["Overhang"] = value.Overhang;
-            }
-        }
-        public KxrDeflectionCriteria FloorDeflectionCriteria
-        {
-            get
-            {
-                var deflection = new KxrDeflectionCriteria();
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Floor"];
-                deflection.LiveLoad = jtoken["LiveLoad"].ToString();
-                deflection.TotalLoad = jtoken["TotalLoad"].ToString();
-                deflection.Cantilever = jtoken["Cantilever"].ToString();
-                deflection.Overhang = jtoken["Overhang"].ToString();
-
-                return deflection;
-            }
-            set
-            {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Floor"];
-                jtoken["LiveLoad"] = value.LiveLoad;
-                jtoken["TotalLoad"] = value.TotalLoad;
-                jtoken["Cantilever"] = value.Cantilever;
-                jtoken["Overhang"] = value.Overhang;
-            }
-        }
         /* ToDo: Ask John about this
         public List<KxrLoadCase> LoadCases
         {
@@ -621,13 +481,590 @@ namespace ComponentFileReader.FileClasses.KxrComponent
             }
         }
         */
-        
-        //General Eng Infor
+        #endregion
 
-        //Design Info
+        #region GeneralEngInfo
+        public string BuildingCode
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                return jtoken["BuildingCode"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                jtoken["BuildingCode"] = value;
+            }
+        }
 
-        #region Two Disticeal Info
+        public string WetService
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                return jtoken["WetService"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                jtoken["WetService"] = value;
+            }
+        }
 
+        public string GreenLumber
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                return jtoken["GreenLumber"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                jtoken["GreenLumber"] = value;
+            }
+        }
+
+        public string TCBracing
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                return jtoken["TCBracing"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                jtoken["TCBracing"] = value;
+            }
+        }
+
+        public string BCBracing
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                return jtoken["BCBracing"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"];
+                jtoken["BCBracing"] = value;
+            }
+        }
+
+        public string WebBracingAutomatic
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                return jtoken["Automatic"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                jtoken["Automatic"] = value;
+            }
+        }
+
+        public string WebBracingAutomaticContinuousLateral
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                return jtoken["Automatic"]["@ContinuousLateral"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                jtoken["Automatic"]["@ContinuousLateral"] = value;
+            }
+        }
+
+        public string WebBracingAutomaticTeeBracing
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                return jtoken["Automatic"]["@TeeBracing"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
+                jtoken["Automatic"]["@TeeBracing"] = value;
+            }
+        }
+
+        public KxrDeflectionCriteria RoofDeflectionCriteria
+        {
+            get
+            {
+                var deflection = new KxrDeflectionCriteria();
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Roof"];
+                deflection.LiveLoad = jtoken["LiveLoad"].ToString();
+                deflection.TotalLoad = jtoken["TotalLoad"].ToString();
+                deflection.Cantilever = jtoken["Cantilever"].ToString();
+                deflection.Overhang = jtoken["Overhang"].ToString();
+
+                return deflection;
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Roof"];
+                jtoken["LiveLoad"] = value.LiveLoad;
+                jtoken["TotalLoad"] = value.TotalLoad;
+                jtoken["Cantilever"] = value.Cantilever;
+                jtoken["Overhang"] = value.Overhang;
+            }
+        }
+
+        public KxrDeflectionCriteria FloorDeflectionCriteria
+        {
+            get
+            {
+                var deflection = new KxrDeflectionCriteria();
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Floor"];
+                deflection.LiveLoad = jtoken["LiveLoad"].ToString();
+                deflection.TotalLoad = jtoken["TotalLoad"].ToString();
+                deflection.Cantilever = jtoken["Cantilever"].ToString();
+                deflection.Overhang = jtoken["Overhang"].ToString();
+
+                return deflection;
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["DeflectionCriteria"]["Floor"];
+                jtoken["LiveLoad"] = value.LiveLoad;
+                jtoken["TotalLoad"] = value.TotalLoad;
+                jtoken["Cantilever"] = value.Cantilever;
+                jtoken["Overhang"] = value.Overhang;
+            }
+        }
+        #endregion
+
+        #region DesignInfo
+        public string CSI
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["Pass-Fail"];
+                return jtoken["CSI"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["Pass-Fail"];
+                jtoken["CSI"] = value;
+            }
+        }
+
+        public string Deflection
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["Pass-Fail"];
+                return jtoken["Deflection"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["Pass-Fail"];
+                jtoken["Deflection"] = value;
+            }
+        }
+
+        public string Buckling
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["Pass-Fail"];
+                return jtoken["Buckling"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["Pass-Fail"];
+                jtoken["Buckling"] = value;
+            }
+        }
+
+        public string Plating
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["Pass-Fail"];
+                return jtoken["Plating"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["Pass-Fail"];
+                jtoken["Plating"] = value;
+            }
+        }
+
+        public string TotalBoardFootage
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["OverallTrussDesign"];
+                return jtoken["TotalBoardFootage"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["OverallTrussDesign"];
+                jtoken["TotalBoardFootage"] = value;
+            }
+        }
+
+        /* ToDo: Ask John about this
+        public List<KxrBearingCombo> Part2BearingCombos
+        {
+            get
+            {
+                var returnList = new List<KxrBearingCombo>();
+
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["OverallTrussDesign"]["BearingCombos"];
+
+                foreach (var bearingCombotoken in jtoken.Children())
+                {
+                    var bearingCombo = new KxrBearingCombo();
+                    foreach (var bearingtoken in bearingCombotoken.Children())
+                    {
+                        var bearing = new KxrBearing();
+                        bearing.Width = bearingtoken["@Width"].ToString();
+                        bearing.Continuous = bearingtoken["@Continuous"].ToString();
+                        bearing.Fixity = bearingtoken["@Fixity"].ToString();
+                        bearing.Fixity = bearingtoken["@Fixity"].ToString();
+                        bearing.LocationX = bearingtoken["Location"]["@X"].ToString();
+                        bearing.LocationX = bearingtoken["Location"]["@Y"].ToString();
+                        bearing.Member = bearingtoken["Location"]["@Member"].ToString();
+
+                        bearingCombo.Bearings.Add(bearing);
+                    }
+
+                    returnList.Add(bearingCombo);
+                }
+
+
+                var bearingCombos = new List<KxrBearingCombo>();
+
+                return returnList;
+            }
+        }
+        */
+
+        public string OverallDeflectionMaxVertical
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["OverallTrussDesign"];
+                return jtoken["OverallDeflection"]["MaxVertical"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["OverallTrussDesign"];
+                jtoken["OverallDeflection"]["MaxVertical"] = value;
+            }
+        }
+
+        public string OverallDeflectionMaxHorizontal
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["OverallTrussDesign"];
+                return jtoken["OverallDeflection"]["MaxHorizontal"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["OverallTrussDesign"];
+                jtoken["OverallDeflection"]["MaxHorizontal"] = value;
+            }
+        }
+
+        public string TopChordDesignCriticalCSI
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["TopChordDesign"];
+                return jtoken["CriticalCSI"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["TopChordDesign"];
+                jtoken["CriticalCSI"] = value;
+            }
+        }
+
+        public string TopChordDesignCriticalCSIMaterial
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["TopChordDesign"];
+                return jtoken["CriticalCSIMaterial"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["TopChordDesign"];
+                jtoken["CriticalCSIMaterial"] = value;
+            }
+        }
+
+        public KxrDeflectionCriteria TopChordDesignMaxTCDeflection
+        {
+            get
+            {
+                var deflection = new KxrDeflectionCriteria();
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["TopChordDesign"]["MaxTCDeflection"];
+                deflection.LiveLoad = jtoken["LiveLoad"].ToString();
+                deflection.TotalLoad = jtoken["TotalLoad"].ToString();
+                deflection.Cantilever = jtoken["Cantilever"].ToString();
+                deflection.Overhang = jtoken["Overhang"].ToString();
+
+                return deflection;
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["TopChordDesign"]["MaxTCDeflection"];
+                jtoken["LiveLoad"] = value.LiveLoad;
+                jtoken["TotalLoad"] = value.TotalLoad;
+                jtoken["Cantilever"] = value.Cantilever;
+                jtoken["Overhang"] = value.Overhang;
+            }
+        }
+
+        public string TopChordDesignBoardFootage
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["TopChordDesign"];
+                return jtoken["BoardFootage"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["TopChordDesign"];
+                jtoken["BoardFootage"] = value;
+            }
+        }
+
+        public string BottomChordDesignCriticalCSI
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["BottomChordDesign"];
+                return jtoken["CriticalCSI"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["BottomChordDesign"];
+                jtoken["CriticalCSI"] = value;
+            }
+        }
+
+        public string BottomChordDesignCriticalCSIMaterial
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["BottomChordDesign"];
+                return jtoken["CriticalCSIMaterial"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["BottomChordDesign"];
+                jtoken["CriticalCSIMaterial"] = value;
+            }
+        }
+
+        public KxrDeflectionCriteria BottomChordDesignMaxBCDeflection
+        {
+            get
+            {
+                var deflection = new KxrDeflectionCriteria();
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["BottomChordDesign"]["MaxBCDeflection"];
+                deflection.LiveLoad = jtoken["LiveLoad"].ToString();
+                deflection.TotalLoad = jtoken["TotalLoad"].ToString();
+                deflection.Cantilever = jtoken["Cantilever"].ToString();
+                deflection.Overhang = jtoken["Overhang"].ToString();
+
+                return deflection;
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["BottomChordDesign"]["MaxBCDeflection"];
+                jtoken["LiveLoad"] = value.LiveLoad;
+                jtoken["TotalLoad"] = value.TotalLoad;
+                jtoken["Cantilever"] = value.Cantilever;
+                jtoken["Overhang"] = value.Overhang;
+            }
+        }
+
+        public string BottomChordDesignBoardFootage
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["BottomChordDesign"];
+                return jtoken["BoardFootage"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["BottomChordDesign"];
+                jtoken["BoardFootage"] = value;
+            }
+        }
+
+        public string WebDesignCriticalCSI
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["WebDesign"];
+                return jtoken["CriticalCSI"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["WebDesign"];
+                jtoken["CriticalCSI"] = value;
+            }
+        }
+
+        public string WebDesignCriticalCSIMaterial
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["WebDesign"];
+                return jtoken["CriticalCSIMaterial"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["WebDesign"];
+                jtoken["CriticalCSIMaterial"] = value;
+            }
+        }
+
+        public string WebDesignNumbBracedWebs
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["WebDesign"];
+                return jtoken["NumbBracedWebs"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["WebDesign"];
+                jtoken["NumbBracedWebs"] = value;
+            }
+        }
+
+        public string WebDesignBoardFootage
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["WebDesign"];
+                return jtoken["BoardFootage"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["WebDesign"];
+                jtoken["BoardFootage"] = value;
+            }
+        }
+
+        public string PlatingDesignManufacturer
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                return jtoken["Manufacturer"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                jtoken["Manufacturer"] = value;
+            }
+        }
+
+        public string PlatingDesignTotalSquareInches
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                return jtoken["SquareInches"]["Total_All"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                jtoken["SquareInches"]["Total_All"] = value;
+            }
+        }
+
+        public string PlatingDesignTotal_HS20ga
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                return jtoken["SquareInches"]["Total_HS20ga"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                jtoken["SquareInches"]["Total_HS20ga"] = value;
+            }
+        }
+
+        public string PlatingDesignTotal_HS18ga
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                return jtoken["SquareInches"]["Total_HS18ga"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                jtoken["SquareInches"]["Total_HS18ga"] = value;
+            }
+        }
+
+        public string PlatingDesignTotal_20ga
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                return jtoken["SquareInches"]["Total_20ga"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                jtoken["SquareInches"]["Total_20ga"] = value;
+            }
+        }
+
+        public string PlatingDesignTotal_18ga
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                return jtoken["SquareInches"]["Total_18ga"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                jtoken["SquareInches"]["Total_18ga"] = value;
+            }
+        }
+
+        public string PlatingDesignTotal_16ga
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                return jtoken["SquareInches"]["Total_16ga"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["PlatingDesign"];
+                jtoken["SquareInches"]["Total_16ga"] = value;
+            }
+        }
+        #endregion
+
+        #region TwoDistancealInfo
         public string ZWidth
         {
             get
@@ -738,6 +1175,128 @@ namespace ComponentFileReader.FileClasses.KxrComponent
             }
         }
 
+        /* ToDo: Ask John about this
+        public List<KxrBearingCombo> Part2BearingCombos
+        {
+            get
+            {
+                var returnList = new List<KxrBearingCombo>();
+
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["OverallTrussDesign"]["BearingCombos"];
+
+                foreach (var bearingCombotoken in jtoken.Children())
+                {
+                    var bearingCombo = new KxrBearingCombo();
+                    foreach (var bearingtoken in bearingCombotoken.Children())
+                    {
+                        var bearing = new KxrBearing();
+                        bearing.Width = bearingtoken["@Width"].ToString();
+                        bearing.Continuous = bearingtoken["@Continuous"].ToString();
+                        bearing.Fixity = bearingtoken["@Fixity"].ToString();
+                        bearing.Fixity = bearingtoken["@Fixity"].ToString();
+                        bearing.LocationX = bearingtoken["Location"]["@X"].ToString();
+                        bearing.LocationX = bearingtoken["Location"]["@Y"].ToString();
+                        bearing.Member = bearingtoken["Location"]["@Member"].ToString();
+
+                        bearingCombo.Bearings.Add(bearing);
+                    }
+
+                    returnList.Add(bearingCombo);
+                }
+
+
+                var bearingCombos = new List<KxrBearingCombo>();
+
+                return returnList;
+            }
+        }
+        */
+        #endregion
+
+        #region JigSettings
+        /* ToDo: Ask John about this
+        public List<KxrJigPoint> JigPoints
+        {
+            get
+            {
+                var returnList = new List<KxrJigPoint>();
+
+                var jtoken = JsonContents.GetValue("TrussDetails")["JigSettings"];
+
+                foreach (var pointSection in jtoken.Children())
+                {
+                    foreach (var token in pointSection["Point"].Children())
+                    {
+                        KxrJigPoint point = new KxrJigPoint();
+                        point.Type = token["@Type"].ToString();
+                        point.X = token["@X"].ToString();
+                        point.Y = token["@Y"].ToString();
+
+                        returnList.Add(point);
+                    }
+                }
+                return returnList;
+            }
+        }
+        */
+        #endregion
+
+        #region LaborFactors
+        public string LaborFactorsCantilever
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LaborFactors"];
+                return jtoken["Cantilever"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LaborFactors"];
+                jtoken["Cantilever"] = value;
+            }
+        }
+
+        public string LaborFactorsEndDetailLeft
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LaborFactors"];
+                return jtoken["EndDetailLeft"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LaborFactors"];
+                jtoken["EndDetailLeft"] = value;
+            }
+        }
+
+        public string LaborFactorsEndDetailRight
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LaborFactors"];
+                return jtoken["EndDetailRight"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LaborFactors"];
+                jtoken["EndDetailRight"] = value;
+            }
+        }
+
+        public string LaborFactorsBeamPocket
+        {
+            get
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LaborFactors"];
+                return jtoken["BeamPocket"].ToString();
+            }
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["LaborFactors"];
+                jtoken["BeamPocket"] = value;
+            }
+        }
         #endregion
     }
 }
