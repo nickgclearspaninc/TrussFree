@@ -65,7 +65,7 @@ namespace ComponentFileReaderTests
             #endregion
 
             #region BearingCombos
-            //ToDo: Ask John about this component.Part1BearingCombos.Count.Should().Be(1);
+            component.Part1BearingCombos.Count.Should().Be(1);
             #endregion
 
             #region TrussType
@@ -102,7 +102,7 @@ namespace ComponentFileReaderTests
             component.SnowLoad.ExposureCategory.Should().Be("Partial");
             component.SnowLoad.TerrainCategory.Should().Be("Unheated");
             component.GirderLoading.Should().Be("NoOne");
-            //ToDo: component.LoadCases.Count.Should().Be(16);
+            component.LoadCases.Count.Should().Be(16);
             #endregion
 
             #region GeneralEngInfo
@@ -111,9 +111,9 @@ namespace ComponentFileReaderTests
             component.GreenLumber.Should().Be("N");
             component.TCBracing.Should().Be("Sheathed");
             component.BCBracing.Should().Be("Sheathed");
-            //ToDo: Fix component.WebBracingAutomatic.Should().Be("Y");
-            //ToDo: Fix component.WebBracingAutomaticContinuousLateral.Should().Be("Y");
-            //ToDo: Fix component.WebBracingAutomaticTeeBracing.Should().Be("N");
+            component.WebBracingAutomatic.Should().Be("Y");
+            component.WebBracingAutomaticContinuousLateral.Should().Be("Y");
+            component.WebBracingAutomaticTeeBracing.Should().Be("N");
             component.RoofDeflectionCriteria.LiveLoad.Should().Be("360");
             component.RoofDeflectionCriteria.TotalLoad.Should().Be("240");
             component.RoofDeflectionCriteria.Cantilever.Should().Be("480");
@@ -130,7 +130,7 @@ namespace ComponentFileReaderTests
             component.Buckling.Should().Be("TODO");
             component.Deflection.Should().Be("PASSED");
             component.TotalBoardFootage.Should().Be("48.000000");
-            //ToDo: component.Part2BearingCombos.Count.Should().Be(1);
+            component.Part2BearingCombos.Count.Should().Be(1);
             component.OverallDeflectionMaxVertical.Should().Be("-0.129231");
             component.OverallDeflectionMaxHorizontal.Should().Be("0.075657");
             component.TopChordDesignCriticalCSI.Should().Be("0.520");
@@ -164,11 +164,11 @@ namespace ComponentFileReaderTests
             component.ZWidth.Should().Be("1.500000");
             component.Plates.Count.Should().Be(9);
             component.Pieces.Count.Should().Be(9);
-            //ToDo: BearingCombosPart3
+            component.Part3BearingCombos.Count.Should().Be(1);
             #endregion
 
             #region JigSettings
-            //ToDo: component.JigPoints.Count.Should().Be(11);
+            component.JigPoints.Count.Should().Be(11);
             #endregion
 
             #region LaborFactors

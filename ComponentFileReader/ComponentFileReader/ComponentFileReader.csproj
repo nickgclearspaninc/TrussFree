@@ -52,7 +52,11 @@
   <ItemGroup>
     <Compile Include="Bearing.cs" />
     <Compile Include="Component.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrBearing2.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrBearing3.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrBearingCombo.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrBearingCombo2.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrBearingCombo3.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrBuildingStandardLoading.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrComponentOverrides.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrComponent.cs" />
@@ -61,6 +65,7 @@
     <Compile Include="FileClasses\KxrComponent\KxrDeflectionCriteria.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrJigPoint.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrLoadCase.cs" />
+    <Compile Include="FileClasses\KxrComponent\KxrReaction.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrSnowLoad.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrStandardLoading.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrTrussType.cs" />

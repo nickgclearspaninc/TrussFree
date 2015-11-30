@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ComponentFileReader.FileClasses.KxrComponent
 {
@@ -254,28 +255,24 @@ namespace ComponentFileReader.FileClasses.KxrComponent
             {
                 var returnList = new List<KxrBearingCombo>();
 
-                var jtoken = JsonContents.GetValue("TrussDetails")["BearingCombos"];
-
-                foreach (var bearingCombotoken in jtoken.Children())
+                var jtoken = JsonContents.GetValue("TrussDetails")["BearingCombos"]["BearingCombo"]["Bearings"]["Bearing"];
+                var bearingCombo = new KxrBearingCombo();
+                bearingCombo.Bearings = new List<KxrBearing>();
+                foreach (var bearingtoken in jtoken.Children())
                 {
-                    var bearingCombo = new KxrBearingCombo();
-                    foreach (var bearingtoken in bearingCombotoken.Children())
-                    {
-                        var bearing = new KxrBearing();
-                        bearing.Width = bearingtoken["@Width"].ToString();
-                        bearing.Continuous = bearingtoken["@Continuous"].ToString();
-                        bearing.Fixity = bearingtoken["@Fixity"].ToString();
-                        bearing.Fixity = bearingtoken["@Fixity"].ToString();
-                        bearing.LocationX = bearingtoken["Location"]["@X"].ToString();
-                        bearing.LocationX = bearingtoken["Location"]["@Y"].ToString();
-                        bearing.Member = bearingtoken["Location"]["@Member"].ToString();
+                    var bearing = new KxrBearing();
+                    bearing.Width = bearingtoken["@Width"].ToString();
+                    bearing.Continuous = bearingtoken["@Continuous"].ToString();
+                    bearing.Fixity = bearingtoken["@Fixity"].ToString();
+                    bearing.Type = bearingtoken["@Type"].ToString();
+                    bearing.LocationX = bearingtoken["Location"]["@X"].ToString();
+                    bearing.LocationY = bearingtoken["Location"]["@Y"].ToString();
+                    bearing.Member = bearingtoken["Location"]["@Member"].ToString();
 
-                        bearingCombo.Bearings.Add(bearing);
-                    }
-
-                    returnList.Add(bearingCombo);
+                    bearingCombo.Bearings.Add(bearing);
                 }
 
+                returnList.Add(bearingCombo);
 
                 var bearingCombos = new List<KxrBearingCombo>();
 
@@ -446,18 +443,20 @@ namespace ComponentFileReader.FileClasses.KxrComponent
                 jtoken["GirderLoading"] = value;
             }
         }
-
-        /* ToDo: Ask John about this
+        
         public List<KxrLoadCase> LoadCases
         {
             get
             {
                 var returnList = new List<KxrLoadCase>();
 
-                 var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["LoadCases"];
+                var jtoken = JsonContents.GetValue("TrussDetails")["LoadingInfo"]["LoadCases"]["LoadCase"];
 
-                foreach (var loadCaseToken in jtoken.Children())
+                var children = jtoken.Children();
+
+                foreach (var loadCaseToken in children)
                 {
+                    var testTokenString = loadCaseToken.ToString();
                     KxrLoadCase loadCaseToAdd = new KxrLoadCase();
                     loadCaseToAdd.MWFRS = loadCaseToken["@MWFRS"].ToString();
                     loadCaseToAdd.CC = loadCaseToken["@CC"].ToString();
@@ -480,7 +479,6 @@ namespace ComponentFileReader.FileClasses.KxrComponent
                 return returnList;
             }
         }
-        */
         #endregion
 
         #region GeneralEngInfo
@@ -558,13 +556,14 @@ namespace ComponentFileReader.FileClasses.KxrComponent
         {
             get
             {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                return jtoken["Automatic"].ToString();
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"]["Automatic"];
+                var testStr = jtoken.ToString();
+                return jtoken["#text"].ToString();
             }
             set
             {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                jtoken["Automatic"] = value;
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"]["Automatic"];
+                jtoken["text"] = value;
             }
         }
 
@@ -572,13 +571,14 @@ namespace ComponentFileReader.FileClasses.KxrComponent
         {
             get
             {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                return jtoken["Automatic"]["@ContinuousLateral"].ToString();
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"]["Automatic"];
+                var testStr = jtoken.ToString();
+                return jtoken["@ContinuousLateral"].ToString();
             }
             set
             {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                jtoken["Automatic"]["@ContinuousLateral"] = value;
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"]["Automatic"];
+                jtoken["@ContinuousLateral"] = value;
             }
         }
 
@@ -586,13 +586,14 @@ namespace ComponentFileReader.FileClasses.KxrComponent
         {
             get
             {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                return jtoken["Automatic"]["@TeeBracing"].ToString();
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"]["Automatic"];
+                var testStr = jtoken.ToString();
+                return jtoken["@TeeBracing"].ToString();
             }
             set
             {
-                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"];
-                jtoken["Automatic"]["@TeeBracing"] = value;
+                var jtoken = JsonContents.GetValue("TrussDetails")["GeneralEngInfo"]["WebBracing"]["Automatic"];
+                jtoken["@TeeBracing"] = value;
             }
         }
 
@@ -713,43 +714,44 @@ namespace ComponentFileReader.FileClasses.KxrComponent
                 jtoken["TotalBoardFootage"] = value;
             }
         }
-
-        /* ToDo: Ask John about this
-        public List<KxrBearingCombo> Part2BearingCombos
+        
+        public List<KxrBearingCombo2> Part2BearingCombos
         {
             get
             {
-                var returnList = new List<KxrBearingCombo>();
+                var returnList = new List<KxrBearingCombo2>();
 
-                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["OverallTrussDesign"]["BearingCombos"];
+                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["OverallTrussDesign"]["BearingCombos"]["BearingCombo"];
 
                 foreach (var bearingCombotoken in jtoken.Children())
                 {
-                    var bearingCombo = new KxrBearingCombo();
-                    foreach (var bearingtoken in bearingCombotoken.Children())
+                    var bearingCombo = new KxrBearingCombo2();
+                    bearingCombo.Bearings = new List<KxrBearing2>();
+                    foreach (var bearingtoken in bearingCombotoken.Children().Children())
                     {
-                        var bearing = new KxrBearing();
-                        bearing.Width = bearingtoken["@Width"].ToString();
-                        bearing.Continuous = bearingtoken["@Continuous"].ToString();
-                        bearing.Fixity = bearingtoken["@Fixity"].ToString();
-                        bearing.Fixity = bearingtoken["@Fixity"].ToString();
-                        bearing.LocationX = bearingtoken["Location"]["@X"].ToString();
-                        bearing.LocationX = bearingtoken["Location"]["@Y"].ToString();
-                        bearing.Member = bearingtoken["Location"]["@Member"].ToString();
-
+                        var bearing = new KxrBearing2();
+                        bearing.MaxDownwardReaction = bearingtoken["MaxDownwardReaction"].ToString();
+                        bearing.MaxUpliftReaction = bearingtoken["MaxUpliftReaction"].ToString();
+                        bearing.MaxHorizReaction = bearingtoken["MaxHorizReaction"].ToString();
+                        bearing.BearingEnhancementRequired = bearingtoken["BearingEnhancementRequired"].ToString();
+                        bearing.Reactions = new List<KxrReaction>();
+                        foreach(var reactionToken in bearingtoken["Reactions"]["LoadCase"])
+                        {
+                            var reactionToAdd = new KxrReaction();
+                            var teststring2 = reactionToken.ToString();
+                            reactionToAdd.InternalId = reactionToken["@InternalId"].ToString();
+                            reactionToAdd.Horizontal = reactionToken["Horizontal"].ToString();
+                            reactionToAdd.Vertical = reactionToken["Vertical"].ToString();
+                            bearing.Reactions.Add(reactionToAdd);
+                        }
                         bearingCombo.Bearings.Add(bearing);
                     }
 
                     returnList.Add(bearingCombo);
                 }
-
-
-                var bearingCombos = new List<KxrBearingCombo>();
-
                 return returnList;
             }
         }
-        */
 
         public string OverallDeflectionMaxVertical
         {
@@ -1174,71 +1176,58 @@ namespace ComponentFileReader.FileClasses.KxrComponent
                 return returnList;
             }
         }
-
-        /* ToDo: Ask John about this
-        public List<KxrBearingCombo> Part2BearingCombos
+        
+        public List<KxrBearingCombo3> Part3BearingCombos
         {
             get
             {
-                var returnList = new List<KxrBearingCombo>();
-
-                var jtoken = JsonContents.GetValue("TrussDetails")["DesignInfo"]["OverallTrussDesign"]["BearingCombos"];
-
-                foreach (var bearingCombotoken in jtoken.Children())
+                var returnList = new List<KxrBearingCombo3>();
+                var jtoken = JsonContents.GetValue("TrussDetails")["TwoDistancealInfo"]["BearingCombos"]["BearingCombo"];
+                foreach (var bearingComboToken in jtoken.Children().Children())
                 {
-                    var bearingCombo = new KxrBearingCombo();
-                    foreach (var bearingtoken in bearingCombotoken.Children())
+                    var comboToAdd = new KxrBearingCombo3();
+                    comboToAdd.Bearings = new List<KxrBearing3>();
+                    foreach(var bearingToken in bearingComboToken["Bearing"].Children())
                     {
-                        var bearing = new KxrBearing();
-                        bearing.Width = bearingtoken["@Width"].ToString();
-                        bearing.Continuous = bearingtoken["@Continuous"].ToString();
-                        bearing.Fixity = bearingtoken["@Fixity"].ToString();
-                        bearing.Fixity = bearingtoken["@Fixity"].ToString();
-                        bearing.LocationX = bearingtoken["Location"]["@X"].ToString();
-                        bearing.LocationX = bearingtoken["Location"]["@Y"].ToString();
-                        bearing.Member = bearingtoken["Location"]["@Member"].ToString();
-
-                        bearingCombo.Bearings.Add(bearing);
+                        var bearingToAdd = new KxrBearing3();
+                        bearingToAdd.BearingPoints = new List<KxrPoint>();
+                        foreach (var pointToken in bearingToken["BrgPoints"]["Point"].Children())
+                        {
+                            var pointToAdd = new KxrPoint();
+                            pointToAdd.X = pointToken["@X"].ToString();
+                            pointToAdd.Y = pointToken["@Y"].ToString();
+                            bearingToAdd.BearingPoints.Add(pointToAdd);
+                        }
+                        comboToAdd.Bearings.Add(bearingToAdd);
                     }
-
-                    returnList.Add(bearingCombo);
+                    returnList.Add(comboToAdd);
                 }
-
-
-                var bearingCombos = new List<KxrBearingCombo>();
 
                 return returnList;
             }
         }
-        */
         #endregion
 
         #region JigSettings
-        /* ToDo: Ask John about this
         public List<KxrJigPoint> JigPoints
         {
             get
             {
                 var returnList = new List<KxrJigPoint>();
-
-                var jtoken = JsonContents.GetValue("TrussDetails")["JigSettings"];
+                var jtoken = JsonContents.GetValue("TrussDetails")["JigSettings"]["Point"];
 
                 foreach (var pointSection in jtoken.Children())
                 {
-                    foreach (var token in pointSection["Point"].Children())
-                    {
-                        KxrJigPoint point = new KxrJigPoint();
-                        point.Type = token["@Type"].ToString();
-                        point.X = token["@X"].ToString();
-                        point.Y = token["@Y"].ToString();
+                    var point = new KxrJigPoint();
+                    point.Type = pointSection["@Type"].ToString();
+                    point.X = pointSection["@X"].ToString();
+                    point.Y = pointSection["@Y"].ToString();
 
-                        returnList.Add(point);
-                    }
+                    returnList.Add(point);
                 }
                 return returnList;
             }
         }
-        */
         #endregion
 
         #region LaborFactors
