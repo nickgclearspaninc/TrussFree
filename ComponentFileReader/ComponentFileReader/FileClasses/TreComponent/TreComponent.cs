@@ -30,9 +30,10 @@ namespace ComponentFileReader.FileClasses.TreComponent
             set { throw new System.NotImplementedException(); }
         }
 
-        public TreComponent(string contents)
+        public TreComponent(string file)
         {
-            Contents = contents.Split('\n');
+            Contents = file.Split('\n');
+            _parseTreData();
         }
     }
 }
