@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace ComponentFileReader.FileClasses.KxrComponent
 {
-    public class KxrDeflectionCriteria
+    public partial class KxrComponent
     {
-        public string LiveLoad;
-        public string TotalLoad;
-        public string Cantilever;
-        public string Overhang;
+        public class KxrDeflectionCriteria
+        {
+            public string LiveLoad;
+            public string TotalLoad;
+            public string Cantilever;
+            public string Overhang;
+        }
     }
 }

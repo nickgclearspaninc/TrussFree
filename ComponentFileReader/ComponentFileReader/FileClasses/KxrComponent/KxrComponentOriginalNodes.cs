@@ -278,6 +278,49 @@ namespace ComponentFileReader.FileClasses.KxrComponent
 
                 return returnList;
             }
+            /*
+            set
+            {
+                var jtoken = JsonContents.GetValue("TrussDetails")["BearingCombos"]["BearingCombo"]["Bearings"];
+                // erase current bearings
+
+                //jtoken.Children.
+
+                string toADD = "@NumbBearings\": \"" + value.Count + "\",";
+
+                //jtoken.ADD(toADD);
+
+                foreach (var x in value)
+                {
+                    string toADD2 = "\"Bearing\": [{";
+                    //jtoken.ADD(toADD);
+
+
+                    string toADD3 = "\"@Width\": \""+ value[0].Bearings[0].Width+"\",";
+                    //jtoken.ADD(toADD);
+
+                }
+
+
+
+
+                //foreach (KxrBearing bearing in value)
+                //{
+                //    string bearingJson += bearing.Continuous;
+
+                //    jtoken.AddAfterSelf(bearingJson);
+
+                //    jtoken.AddAfterSelf(["@Width"].ToString();
+                //    jtoken["@Continuous"].ToString();
+                //    jtoken["@Fixity"].ToString();
+                //    jtoken["@Type"].ToString();
+                //    jtoken["Location"]["@X"].ToString();
+                //    jtoken["Location"]["@Y"].ToString();
+                //    jtoken["Location"]["@Member"].ToString();
+
+                //}
+            }
+            */
         }
         #endregion
 

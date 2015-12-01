@@ -1,0 +1,1481 @@
+{
+  "?xml": {
+    "@version": "1.0",
+    "@encoding": "UTF-8",
+    "@standalone": "yes"
+  },
+  "TrussDetails": {
+    "@TrussName": "eagle",
+    "@AppVersion": "Truss v5.03 [Build 0030]",
+    "@XMLVersion": "10",
+    "TrussFileType": "Roof",
+    "TrussFamily": "1",
+    "Span": "288.000000",
+    "Pitch": "4 /12",
+    "Quantity": "1",
+    "PricingQuantity": "0",
+    "LtOverhang": "0.000000",
+    "RtOverhang": "0.000000",
+    "LtHeelHeight": "3.939324",
+    "RtHeelHeight": "3.939324",
+    "OverallHeight": "51.939324",
+    "Plies": "1",
+    "WeightPerPly": "83",
+    "Spacing": "24",
+    "BearingCombos": {
+      "@NumbBrgCombos": "1",
+      "BearingCombo": {
+        "Bearings": {
+          "@NumbBearings": "2",
+          "Bearing": [
+            {
+              "@Width": "3.500000",
+              "@Continuous": "N",
+              "@Fixity": "PIN",
+              "@Type": "WALL",
+              "Location": {
+                "@X": "0",
+                "@Y": "0",
+                "@Member": "Bottom Chord"
+              }
+            },
+            {
+              "@Width": "3.500000",
+              "@Continuous": "N",
+              "@Fixity": "HROLL",
+              "@Type": "WALL",
+              "Location": {
+                "@X": "288",
+                "@Y": "0",
+                "@Member": "Bottom Chord"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "TrussType": {
+      "@ITRImport": "N",
+      "Gable": "N",
+      "Girder": "N",
+      "Hip": "N",
+      "Jack": "N",
+      "Rafter": "N",
+      "Attic": "N",
+      "Ag": "N",
+      "Reversed": "N",
+      "StructGable": "N"
+    },
+    "LoadingInfo": {
+      "StandardLoading": {
+        "TCLive": "20.000",
+        "BCLive": "0.000",
+        "TCDead": "10.000",
+        "BCDead": "10.000"
+      },
+      "BuildingStandardLoading": {
+        "TCLive": "20.000",
+        "BCLive": "0.000",
+        "TCDead": "10.000",
+        "BCDead": "10.000"
+      },
+      "AutomatedLiveLoads": {
+        "RoofLiveLoadProvision": "IBC 2009"
+      },
+      "WindLoad": {
+        "UseWind": "Y",
+        "WindLoadProvision": "ASCE7 - 05",
+        "WindSpeed": "90",
+        "ExposureCategory": "C",
+        "BuildingCategory": "II",
+        "HurricaneRegion": "N"
+      },
+      "SnowLoad": {
+        "UseSnow": "Y",
+        "SnowLoadProvision": "ASCE7 - 05",
+        "GroundSnowLoad": "30",
+        "ExposureCategory": "Partial",
+        "TerrainCategory": "Unheated"
+      },
+      "GirderLoad": {
+        "GirderLoading": "NoOne"
+      },
+      "LoadCases": {
+        "@Count": "16",
+        "LoadCase": [
+          {
+            "@MWFRS": "false",
+            "@CC": "false",
+            "@AUTO": "false",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC0",
+            "Id": "Lr1",
+            "Description": "Std Live Load",
+            "Type": "Roof Live"
+          },
+          {
+            "@MWFRS": "false",
+            "@CC": "false",
+            "@AUTO": "false",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC1",
+            "Id": "D1",
+            "Description": "Std Dead Load",
+            "Type": "Dead"
+          },
+          {
+            "@MWFRS": "false",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC2",
+            "Id": "S1",
+            "Description": "Balanced Snow",
+            "Type": "Snow"
+          },
+          {
+            "@MWFRS": "false",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC3",
+            "Id": "S2",
+            "Description": "Unbalanced Snow (Wind from Left)",
+            "Type": "Snow"
+          },
+          {
+            "@MWFRS": "false",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC4",
+            "Id": "S3",
+            "Description": "Unbalanced Snow (Wind from Right)",
+            "Type": "Snow"
+          },
+          {
+            "@MWFRS": "true",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC5",
+            "Id": "W1",
+            "Description": "MWFRS-Left(Up)",
+            "Type": "Wind"
+          },
+          {
+            "@MWFRS": "true",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC6",
+            "Id": "W2",
+            "Description": "MWFRS-Right(Up)",
+            "Type": "Wind"
+          },
+          {
+            "@MWFRS": "true",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC7",
+            "Id": "W3",
+            "Description": "MWFRS-(Max Dn)",
+            "Type": "Wind"
+          },
+          {
+            "@MWFRS": "false",
+            "@CC": "true",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC8",
+            "Id": "W4",
+            "Description": "C&C(Suction)",
+            "Type": "Wind"
+          },
+          {
+            "@MWFRS": "true",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC9",
+            "Id": "W5",
+            "Description": "MWFRS-Left(Dn)",
+            "Type": "Wind"
+          },
+          {
+            "@MWFRS": "true",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC10",
+            "Id": "W6",
+            "Description": "MWFRS-Right(Dn)",
+            "Type": "Wind"
+          },
+          {
+            "@MWFRS": "false",
+            "@CC": "true",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC11",
+            "Id": "W7",
+            "Description": "C&C(Compr)",
+            "Type": "Wind"
+          },
+          {
+            "@MWFRS": "true",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC12",
+            "Id": "W8",
+            "Description": "MWFRS-Wind || to Ridge",
+            "Type": "Wind"
+          },
+          {
+            "@MWFRS": "false",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "true",
+            "@InternalId": "LC13",
+            "Id": "AS10*",
+            "Description": "Attic Storage",
+            "Type": "Attic Storage"
+          },
+          {
+            "@MWFRS": "false",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC14",
+            "Id": "UR1",
+            "Description": "Unbalanced Left Live Roof",
+            "Type": "Unbalanced Roof"
+          },
+          {
+            "@MWFRS": "false",
+            "@CC": "false",
+            "@AUTO": "true",
+            "@USER": "false",
+            "@ATTIC": "false",
+            "@TTC": "false",
+            "@ATTIC_STO": "false",
+            "@InternalId": "LC15",
+            "Id": "UR2",
+            "Description": "Unbalanced Right Live Roof",
+            "Type": "Unbalanced Roof"
+          }
+        ]
+      }
+    },
+    "GeneralEngInfo": {
+      "BuildingCode": "IBC 2009",
+      "WetService": "N",
+      "GreenLumber": "N",
+      "TCBracing": "Sheathed",
+      "BCBracing": "Sheathed",
+      "WebBracing": {
+        "Automatic": {
+          "@ContinuousLateral": "Y",
+          "@TeeBracing": "N",
+          "#text": "Y"
+        }
+      },
+      "DeflectionCriteria": {
+        "Roof": {
+          "LiveLoad": "360",
+          "TotalLoad": "240",
+          "Cantilever": "480",
+          "Overhang": "120"
+        },
+        "Floor": {
+          "LiveLoad": "480",
+          "TotalLoad": "360",
+          "Cantilever": "720",
+          "Overhang": "240"
+        }
+      }
+    },
+    "DesignInfo": {
+      "Pass-Fail": {
+        "CSI": "PASSED",
+        "Deflection": "PASSED",
+        "Buckling": "TODO",
+        "Plating": "PASSED"
+      },
+      "OverallTrussDesign": {
+        "TotalBoardFootage": "48.000000",
+        "BearingCombos": {
+          "@NumbBrgCombos": "1",
+          "BearingCombo": {
+            "Bearing": [
+              {
+                "MaxDownwardReaction": "1111.407",
+                "MaxUpliftReaction": "-279.363",
+                "MaxHorizReaction": "2.226",
+                "BearingEnhancementRequired": "N",
+                "Reactions": {
+                  "@Count": "16",
+                  "LoadCase": [
+                    {
+                      "@InternalId": "LC0",
+                      "Horizontal": "0",
+                      "Vertical": "480"
+                    },
+                    {
+                      "@InternalId": "LC1",
+                      "Horizontal": "0",
+                      "Vertical": "480"
+                    },
+                    {
+                      "@InternalId": "LC2",
+                      "Horizontal": "0",
+                      "Vertical": "554"
+                    },
+                    {
+                      "@InternalId": "LC3",
+                      "Horizontal": "0",
+                      "Vertical": "353"
+                    },
+                    {
+                      "@InternalId": "LC4",
+                      "Horizontal": "0",
+                      "Vertical": "631"
+                    },
+                    {
+                      "@InternalId": "LC5",
+                      "Horizontal": "-2",
+                      "Vertical": "-241"
+                    },
+                    {
+                      "@InternalId": "LC6",
+                      "Horizontal": "2",
+                      "Vertical": "-244"
+                    },
+                    {
+                      "@InternalId": "LC7",
+                      "Horizontal": "-0",
+                      "Vertical": "-56"
+                    },
+                    {
+                      "@InternalId": "LC8",
+                      "Horizontal": "-0",
+                      "Vertical": "-567"
+                    },
+                    {
+                      "@InternalId": "LC9",
+                      "Horizontal": "-64",
+                      "Vertical": "-108"
+                    },
+                    {
+                      "@InternalId": "LC10",
+                      "Horizontal": "64",
+                      "Vertical": "-193"
+                    },
+                    {
+                      "@InternalId": "LC11",
+                      "Horizontal": "0",
+                      "Vertical": "172"
+                    },
+                    {
+                      "@InternalId": "LC12",
+                      "Horizontal": "-0",
+                      "Vertical": "-373"
+                    },
+                    {
+                      "@InternalId": "LC13",
+                      "Horizontal": "0",
+                      "Vertical": "240"
+                    },
+                    {
+                      "@InternalId": "LC14",
+                      "Horizontal": "0",
+                      "Vertical": "360"
+                    },
+                    {
+                      "@InternalId": "LC15",
+                      "Horizontal": "0",
+                      "Vertical": "120"
+                    }
+                  ]
+                }
+              },
+              {
+                "MaxDownwardReaction": "1111.407",
+                "MaxUpliftReaction": "-279.363",
+                "MaxHorizReaction": "0.000",
+                "BearingEnhancementRequired": "N",
+                "Reactions": {
+                  "@Count": "16",
+                  "LoadCase": [
+                    {
+                      "@InternalId": "LC0",
+                      "Horizontal": "0",
+                      "Vertical": "480"
+                    },
+                    {
+                      "@InternalId": "LC1",
+                      "Horizontal": "0",
+                      "Vertical": "480"
+                    },
+                    {
+                      "@InternalId": "LC2",
+                      "Horizontal": "0",
+                      "Vertical": "554"
+                    },
+                    {
+                      "@InternalId": "LC3",
+                      "Horizontal": "0",
+                      "Vertical": "631"
+                    },
+                    {
+                      "@InternalId": "LC4",
+                      "Horizontal": "0",
+                      "Vertical": "353"
+                    },
+                    {
+                      "@InternalId": "LC5",
+                      "Horizontal": "0",
+                      "Vertical": "-244"
+                    },
+                    {
+                      "@InternalId": "LC6",
+                      "Horizontal": "0",
+                      "Vertical": "-241"
+                    },
+                    {
+                      "@InternalId": "LC7",
+                      "Horizontal": "-0",
+                      "Vertical": "-56"
+                    },
+                    {
+                      "@InternalId": "LC8",
+                      "Horizontal": "-0",
+                      "Vertical": "-567"
+                    },
+                    {
+                      "@InternalId": "LC9",
+                      "Horizontal": "-0",
+                      "Vertical": "-193"
+                    },
+                    {
+                      "@InternalId": "LC10",
+                      "Horizontal": "-0",
+                      "Vertical": "-108"
+                    },
+                    {
+                      "@InternalId": "LC11",
+                      "Horizontal": "0",
+                      "Vertical": "172"
+                    },
+                    {
+                      "@InternalId": "LC12",
+                      "Horizontal": "-0",
+                      "Vertical": "-373"
+                    },
+                    {
+                      "@InternalId": "LC13",
+                      "Horizontal": "0",
+                      "Vertical": "240"
+                    },
+                    {
+                      "@InternalId": "LC14",
+                      "Horizontal": "0",
+                      "Vertical": "120"
+                    },
+                    {
+                      "@InternalId": "LC15",
+                      "Horizontal": "0",
+                      "Vertical": "360"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "OverallDeflection": {
+          "MaxVertical": "-0.129231",
+          "MaxHorizontal": "0.075657"
+        }
+      },
+      "TopChordDesign": {
+        "CriticalCSI": "0.520",
+        "CriticalCSIMaterial": "TODO",
+        "MaxTCDeflection": {
+          "LiveLoad": "-0.052281",
+          "TotalLoad": "-0.129231",
+          "Cantilever": "0.000000",
+          "Overhang": "0.000000"
+        },
+        "BoardFootage": "18.666667"
+      },
+      "BottomChordDesign": {
+        "CriticalCSI": "0.655",
+        "CriticalCSIMaterial": "TODO",
+        "MaxBCDeflection": {
+          "LiveLoad": "-0.103727",
+          "TotalLoad": "-0.249638",
+          "Cantilever": "0.000000",
+          "Overhang": "0.000000"
+        },
+        "BoardFootage": "16.000000"
+      },
+      "WebDesign": {
+        "CriticalCSI": "0.442",
+        "CriticalCSIMaterial": "TODO",
+        "NumbBracedWebs": "4",
+        "BoardFootage": "13.333333"
+      },
+      "PlatingDesign": {
+        "Manufacturer": "Eagle Metal",
+        "SquareInches": {
+          "Total_All": "288.000000",
+          "Total_HS20ga": "0.000000",
+          "Total_HS18ga": "0.000000",
+          "Total_20ga": "288.000000",
+          "Total_18ga": "0.000000",
+          "Total_16ga": "0.000000"
+        }
+      }
+    },
+    "TwoDistancealInfo": {
+      "Width": "1.500000",
+      "Pieces": {
+        "@NumbPieces": "9",
+        "Piece": [
+          {
+            "@Label": "T1",
+            "@NumbPoints": "4",
+            "@Type": "TC",
+            "PieceLengths": {
+              "ShortSide": "151.789328",
+              "LongSide": "151.789328",
+              "Centerline": "151.789328",
+              "Overall": "152.955994",
+              "Corner2Corner": "152.996033",
+              "PiecePick": "168.000000"
+            },
+            "Material": {
+              "Text": "DFL #1  2 x  4",
+              "Species": "DFL",
+              "Grade": "#1",
+              "NominalThickness": "2",
+              "NominalWidth": "4",
+              "Treatment": "None"
+            },
+            "BevelInformation": {
+              "LeftEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              },
+              "RightEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              }
+            },
+            "Vertical": "N",
+            "Point": [
+              {
+                "@X": "0.000000",
+                "@Y": "0.250000"
+              },
+              {
+                "@X": "0.000000",
+                "@Y": "3.939324"
+              },
+              {
+                "@X": "144.000000",
+                "@Y": "51.939324"
+              },
+              {
+                "@X": "144.000000",
+                "@Y": "48.250000"
+              }
+            ]
+          },
+          {
+            "@Label": "T2",
+            "@NumbPoints": "4",
+            "@Type": "TC",
+            "PieceLengths": {
+              "ShortSide": "151.789328",
+              "LongSide": "151.789328",
+              "Centerline": "151.789328",
+              "Overall": "152.955994",
+              "Corner2Corner": "152.996033",
+              "PiecePick": "168.000000"
+            },
+            "Material": {
+              "Text": "DFL #1  2 x  4",
+              "Species": "DFL",
+              "Grade": "#1",
+              "NominalThickness": "2",
+              "NominalWidth": "4",
+              "Treatment": "None"
+            },
+            "BevelInformation": {
+              "LeftEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              },
+              "RightEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              }
+            },
+            "Vertical": "N",
+            "Point": [
+              {
+                "@X": "288.000000",
+                "@Y": "0.250000"
+              },
+              {
+                "@X": "144.000000",
+                "@Y": "48.250000"
+              },
+              {
+                "@X": "144.000000",
+                "@Y": "51.939324"
+              },
+              {
+                "@X": "288.000000",
+                "@Y": "3.939324"
+              }
+            ]
+          },
+          {
+            "@Label": "B1",
+            "@NumbPoints": "5",
+            "@Type": "BC",
+            "PieceLengths": {
+              "ShortSide": "110.250000",
+              "LongSide": "120.000000",
+              "Centerline": "115.500000",
+              "Overall": "120.000000",
+              "Corner2Corner": "120.051031",
+              "PiecePick": "120.000000"
+            },
+            "Material": {
+              "Text": "DFL #1  2 x  4",
+              "Species": "DFL",
+              "Grade": "#1",
+              "NominalThickness": "2",
+              "NominalWidth": "4",
+              "Treatment": "None"
+            },
+            "BevelInformation": {
+              "LeftEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              },
+              "RightEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              }
+            },
+            "Vertical": "N",
+            "Point": [
+              {
+                "@X": "168.000000",
+                "@Y": "0.000000"
+              },
+              {
+                "@X": "168.000000",
+                "@Y": "3.500000"
+              },
+              {
+                "@X": "278.250000",
+                "@Y": "3.500000"
+              },
+              {
+                "@X": "288.000000",
+                "@Y": "0.250000"
+              },
+              {
+                "@X": "288.000000",
+                "@Y": "0.000000"
+              }
+            ]
+          },
+          {
+            "@Label": "B2",
+            "@NumbPoints": "5",
+            "@Type": "BC",
+            "PieceLengths": {
+              "ShortSide": "158.250000",
+              "LongSide": "168.000000",
+              "Centerline": "163.500000",
+              "Overall": "168.000000",
+              "Corner2Corner": "168.036454",
+              "PiecePick": "168.000000"
+            },
+            "Material": {
+              "Text": "DFL #1  2 x  4",
+              "Species": "DFL",
+              "Grade": "#1",
+              "NominalThickness": "2",
+              "NominalWidth": "4",
+              "Treatment": "None"
+            },
+            "BevelInformation": {
+              "LeftEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              },
+              "RightEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              }
+            },
+            "Vertical": "N",
+            "Point": [
+              {
+                "@X": "0.000000",
+                "@Y": "0.000000"
+              },
+              {
+                "@X": "0.000000",
+                "@Y": "0.250000"
+              },
+              {
+                "@X": "9.750000",
+                "@Y": "3.500000"
+              },
+              {
+                "@X": "168.000000",
+                "@Y": "3.500000"
+              },
+              {
+                "@X": "168.000000",
+                "@Y": "0.000000"
+              }
+            ]
+          },
+          {
+            "@Label": "W1",
+            "@NumbPoints": "4",
+            "@Type": "Web",
+            "PieceLengths": {
+              "ShortSide": "20.166667",
+              "LongSide": "21.333333",
+              "Centerline": "20.750000",
+              "Overall": "21.333333",
+              "Corner2Corner": "21.618536",
+              "PiecePick": "24.000000"
+            },
+            "Material": {
+              "Text": "WW Stud  2 x  4",
+              "Species": "WW",
+              "Grade": "Stud",
+              "NominalThickness": "2",
+              "NominalWidth": "4",
+              "Treatment": "None"
+            },
+            "BevelInformation": {
+              "LeftEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              },
+              "RightEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              }
+            },
+            "Vertical": "Y",
+            "Point": [
+              {
+                "@X": "70.250000",
+                "@Y": "3.500000"
+              },
+              {
+                "@X": "70.250000",
+                "@Y": "23.666667"
+              },
+              {
+                "@X": "73.750000",
+                "@Y": "24.833333"
+              },
+              {
+                "@X": "73.750000",
+                "@Y": "3.500000"
+              }
+            ]
+          },
+          {
+            "@Label": "W2",
+            "@NumbPoints": "6",
+            "@Type": "Web",
+            "PieceLengths": {
+              "ShortSide": "65.580959",
+              "LongSide": "68.767710",
+              "Centerline": "71.745112",
+              "Overall": "71.745112",
+              "Corner2Corner": "71.745112",
+              "PiecePick": "72.000000"
+            },
+            "Material": {
+              "Text": "WW Stud  2 x  4",
+              "Species": "WW",
+              "Grade": "Stud",
+              "NominalThickness": "2",
+              "NominalWidth": "4",
+              "Treatment": "None"
+            },
+            "BevelInformation": {
+              "LeftEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              },
+              "RightEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              }
+            },
+            "Vertical": "N",
+            "Point": [
+              {
+                "@X": "136.364659",
+                "@Y": "3.500000"
+              },
+              {
+                "@X": "73.750000",
+                "@Y": "23.000429"
+              },
+              {
+                "@X": "73.750000",
+                "@Y": "24.833333"
+              },
+              {
+                "@X": "76.592731",
+                "@Y": "25.780910"
+              },
+              {
+                "@X": "142.250000",
+                "@Y": "5.332904"
+              },
+              {
+                "@X": "142.250000",
+                "@Y": "3.500000"
+              }
+            ]
+          },
+          {
+            "@Label": "W3",
+            "@NumbPoints": "5",
+            "@Type": "Web",
+            "PieceLengths": {
+              "ShortSide": "44.166667",
+              "LongSide": "44.166667",
+              "Centerline": "44.750000",
+              "Overall": "44.750000",
+              "Corner2Corner": "44.784205",
+              "PiecePick": "48.000000"
+            },
+            "Material": {
+              "Text": "WW Stud  2 x  4",
+              "Species": "WW",
+              "Grade": "Stud",
+              "NominalThickness": "2",
+              "NominalWidth": "4",
+              "Treatment": "None"
+            },
+            "BevelInformation": {
+              "LeftEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              },
+              "RightEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              }
+            },
+            "Vertical": "Y",
+            "Point": [
+              {
+                "@X": "142.250000",
+                "@Y": "3.500000"
+              },
+              {
+                "@X": "142.250000",
+                "@Y": "47.666667"
+              },
+              {
+                "@X": "144.000000",
+                "@Y": "48.250000"
+              },
+              {
+                "@X": "145.750000",
+                "@Y": "47.666667"
+              },
+              {
+                "@X": "145.750000",
+                "@Y": "3.500000"
+              }
+            ]
+          },
+          {
+            "@Label": "W4",
+            "@NumbPoints": "6",
+            "@Type": "Web",
+            "PieceLengths": {
+              "ShortSide": "65.580959",
+              "LongSide": "68.767710",
+              "Centerline": "71.745112",
+              "Overall": "71.745112",
+              "Corner2Corner": "71.745112",
+              "PiecePick": "72.000000"
+            },
+            "Material": {
+              "Text": "WW Stud  2 x  4",
+              "Species": "WW",
+              "Grade": "Stud",
+              "NominalThickness": "2",
+              "NominalWidth": "4",
+              "Treatment": "None"
+            },
+            "BevelInformation": {
+              "LeftEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              },
+              "RightEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              }
+            },
+            "Vertical": "N",
+            "Point": [
+              {
+                "@X": "145.750000",
+                "@Y": "3.500000"
+              },
+              {
+                "@X": "145.750000",
+                "@Y": "5.332904"
+              },
+              {
+                "@X": "211.407269",
+                "@Y": "25.780910"
+              },
+              {
+                "@X": "214.250000",
+                "@Y": "24.833333"
+              },
+              {
+                "@X": "214.250000",
+                "@Y": "23.000429"
+              },
+              {
+                "@X": "151.635341",
+                "@Y": "3.500000"
+              }
+            ]
+          },
+          {
+            "@Label": "W5",
+            "@NumbPoints": "4",
+            "@Type": "Web",
+            "PieceLengths": {
+              "ShortSide": "20.166667",
+              "LongSide": "21.333333",
+              "Centerline": "20.750000",
+              "Overall": "21.333333",
+              "Corner2Corner": "21.618536",
+              "PiecePick": "24.000000"
+            },
+            "Material": {
+              "Text": "WW Stud  2 x  4",
+              "Species": "WW",
+              "Grade": "Stud",
+              "NominalThickness": "2",
+              "NominalWidth": "4",
+              "Treatment": "None"
+            },
+            "BevelInformation": {
+              "LeftEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              },
+              "RightEndBevel": {
+                "BevelType": "None",
+                "BevelAngle": "0.00"
+              }
+            },
+            "Vertical": "Y",
+            "Point": [
+              {
+                "@X": "214.250000",
+                "@Y": "3.500000"
+              },
+              {
+                "@X": "214.250000",
+                "@Y": "24.833333"
+              },
+              {
+                "@X": "217.750000",
+                "@Y": "23.666667"
+              },
+              {
+                "@X": "217.750000",
+                "@Y": "3.500000"
+              }
+            ]
+          }
+        ]
+      },
+      "Plates": {
+        "@NumbPlates": "9",
+        "Plate": [
+          {
+            "@Label": "3x8 20 ga.",
+            "@Width": "3.000000",
+            "@Length": "8.000000",
+            "@Gauge": "20",
+            "@Angle": "-0.000",
+            "@JointNo": "1",
+            "@SplicePlate": "",
+            "@Type": "Eagle",
+            "PlatePts": {
+              "@NumbPltPoints": "4",
+              "Point": [
+                {
+                  "@X": "0.875000",
+                  "@Y": "0.375000"
+                },
+                {
+                  "@X": "8.875000",
+                  "@Y": "0.375000"
+                },
+                {
+                  "@X": "8.875000",
+                  "@Y": "3.375000"
+                },
+                {
+                  "@X": "0.875000",
+                  "@Y": "3.375000"
+                }
+              ]
+            }
+          },
+          {
+            "@Label": "3x4 20 ga.",
+            "@Width": "3.000000",
+            "@Length": "4.000000",
+            "@Gauge": "20",
+            "@Angle": "18.435",
+            "@JointNo": "2",
+            "@SplicePlate": "",
+            "@Type": "Eagle",
+            "PlatePts": {
+              "@NumbPltPoints": "4",
+              "Point": [
+                {
+                  "@X": "72.326975",
+                  "@Y": "22.777853"
+                },
+                {
+                  "@X": "76.121708",
+                  "@Y": "24.042764"
+                },
+                {
+                  "@X": "75.173025",
+                  "@Y": "26.888814"
+                },
+                {
+                  "@X": "71.378292",
+                  "@Y": "25.623903"
+                }
+              ]
+            }
+          },
+          {
+            "@Label": "4x5 20 ga.",
+            "@Width": "4.000000",
+            "@Length": "5.000000",
+            "@Gauge": "20",
+            "@Angle": "0.000",
+            "@JointNo": "3",
+            "@SplicePlate": "",
+            "@Type": "Eagle",
+            "PlatePts": {
+              "@NumbPltPoints": "4",
+              "Point": [
+                {
+                  "@X": "141.500000",
+                  "@Y": "46.250000"
+                },
+                {
+                  "@X": "146.500000",
+                  "@Y": "46.250000"
+                },
+                {
+                  "@X": "146.500000",
+                  "@Y": "50.250000"
+                },
+                {
+                  "@X": "141.500000",
+                  "@Y": "50.250000"
+                }
+              ]
+            }
+          },
+          {
+            "@Label": "3x4 20 ga.",
+            "@Width": "3.000000",
+            "@Length": "4.000000",
+            "@Gauge": "20",
+            "@Angle": "-18.435",
+            "@JointNo": "4",
+            "@SplicePlate": "",
+            "@Type": "Eagle",
+            "PlatePts": {
+              "@NumbPltPoints": "4",
+              "Point": [
+                {
+                  "@X": "216.621708",
+                  "@Y": "25.623903"
+                },
+                {
+                  "@X": "212.826975",
+                  "@Y": "26.888814"
+                },
+                {
+                  "@X": "211.878292",
+                  "@Y": "24.042764"
+                },
+                {
+                  "@X": "215.673025",
+                  "@Y": "22.777853"
+                }
+              ]
+            }
+          },
+          {
+            "@Label": "3x8 20 ga.",
+            "@Width": "3.000000",
+            "@Length": "8.000000",
+            "@Gauge": "20",
+            "@Angle": "-0.000",
+            "@JointNo": "5",
+            "@SplicePlate": "",
+            "@Type": "Eagle",
+            "PlatePts": {
+              "@NumbPltPoints": "4",
+              "Point": [
+                {
+                  "@X": "279.125000",
+                  "@Y": "0.375000"
+                },
+                {
+                  "@X": "287.125000",
+                  "@Y": "0.375000"
+                },
+                {
+                  "@X": "287.125000",
+                  "@Y": "3.375000"
+                },
+                {
+                  "@X": "279.125000",
+                  "@Y": "3.375000"
+                }
+              ]
+            }
+          },
+          {
+            "@Label": "1.5x3 20 ga.",
+            "@Width": "1.500000",
+            "@Length": "3.000000",
+            "@Gauge": "20",
+            "@Angle": "90.000",
+            "@JointNo": "6",
+            "@SplicePlate": "",
+            "@Type": "Eagle",
+            "PlatePts": {
+              "@NumbPltPoints": "4",
+              "Point": [
+                {
+                  "@X": "216.750000",
+                  "@Y": "2.000000"
+                },
+                {
+                  "@X": "216.750000",
+                  "@Y": "5.000000"
+                },
+                {
+                  "@X": "215.250000",
+                  "@Y": "5.000000"
+                },
+                {
+                  "@X": "215.250000",
+                  "@Y": "2.000000"
+                }
+              ]
+            }
+          },
+          {
+            "@Label": "3x5 20 ga.",
+            "@Width": "3.000000",
+            "@Length": "5.000000",
+            "@Gauge": "20",
+            "@Angle": "0.000",
+            "@JointNo": "7",
+            "@SplicePlate": "BCOFFPS",
+            "@Type": "Eagle",
+            "PlatePts": {
+              "@NumbPltPoints": "4",
+              "Point": [
+                {
+                  "@X": "165.500000",
+                  "@Y": "0.250000"
+                },
+                {
+                  "@X": "170.500000",
+                  "@Y": "0.250000"
+                },
+                {
+                  "@X": "170.500000",
+                  "@Y": "3.250000"
+                },
+                {
+                  "@X": "165.500000",
+                  "@Y": "3.250000"
+                }
+              ]
+            }
+          },
+          {
+            "@Label": "4x7 20 ga.",
+            "@Width": "4.000000",
+            "@Length": "7.000000",
+            "@Gauge": "20",
+            "@Angle": "0.000",
+            "@JointNo": "8",
+            "@SplicePlate": "",
+            "@Type": "Eagle",
+            "PlatePts": {
+              "@NumbPltPoints": "4",
+              "Point": [
+                {
+                  "@X": "140.500000",
+                  "@Y": "1.500000"
+                },
+                {
+                  "@X": "147.500000",
+                  "@Y": "1.500000"
+                },
+                {
+                  "@X": "147.500000",
+                  "@Y": "5.500000"
+                },
+                {
+                  "@X": "140.500000",
+                  "@Y": "5.500000"
+                }
+              ]
+            }
+          },
+          {
+            "@Label": "1.5x3 20 ga.",
+            "@Width": "1.500000",
+            "@Length": "3.000000",
+            "@Gauge": "20",
+            "@Angle": "90.000",
+            "@JointNo": "9",
+            "@SplicePlate": "",
+            "@Type": "Eagle",
+            "PlatePts": {
+              "@NumbPltPoints": "4",
+              "Point": [
+                {
+                  "@X": "72.750000",
+                  "@Y": "2.000000"
+                },
+                {
+                  "@X": "72.750000",
+                  "@Y": "5.000000"
+                },
+                {
+                  "@X": "71.250000",
+                  "@Y": "5.000000"
+                },
+                {
+                  "@X": "71.250000",
+                  "@Y": "2.000000"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "BearingCombos": {
+        "@NumbBrgCombos": "1",
+        "BearingCombo": {
+          "Bearings": {
+            "@NumbBearings": "2",
+            "Bearing": [
+              {
+                "BrgPoints": {
+                  "@NumbPoints": "4",
+                  "Point": [
+                    {
+                      "@X": "0.000000",
+                      "@Y": "0.000000"
+                    },
+                    {
+                      "@X": "3.500000",
+                      "@Y": "0.000000"
+                    },
+                    {
+                      "@X": "0.000000",
+                      "@Y": "-3.000000"
+                    },
+                    {
+                      "@X": "3.500000",
+                      "@Y": "-3.000000"
+                    }
+                  ]
+                }
+              },
+              {
+                "BrgPoints": {
+                  "@NumbPoints": "4",
+                  "Point": [
+                    {
+                      "@X": "284.500000",
+                      "@Y": "0.000000"
+                    },
+                    {
+                      "@X": "288.000000",
+                      "@Y": "0.000000"
+                    },
+                    {
+                      "@X": "284.500000",
+                      "@Y": "-3.000000"
+                    },
+                    {
+                      "@X": "288.000000",
+                      "@Y": "-3.000000"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "JigSettings": {
+      "@NumbPoints": "11",
+      "Point": [
+        {
+          "@Type": "TopHeel",
+          "@X": "0.000",
+          "@Y": "3.939"
+        },
+        {
+          "@Type": "TopChord",
+          "@X": "72.000",
+          "@Y": "27.939"
+        },
+        {
+          "@Type": "TopChord",
+          "@X": "144.000",
+          "@Y": "51.939"
+        },
+        {
+          "@Type": "TopChord",
+          "@X": "216.000",
+          "@Y": "27.939"
+        },
+        {
+          "@Type": "TopHeel",
+          "@X": "288.000",
+          "@Y": "3.939"
+        },
+        {
+          "@Type": "BottomHeel",
+          "@X": "288.000",
+          "@Y": "0.000"
+        },
+        {
+          "@Type": "BottomChord",
+          "@X": "216.000",
+          "@Y": "0.000"
+        },
+        {
+          "@Type": "BottomChord",
+          "@X": "168.000",
+          "@Y": "0.000"
+        },
+        {
+          "@Type": "BottomChord",
+          "@X": "144.000",
+          "@Y": "0.000"
+        },
+        {
+          "@Type": "BottomChord",
+          "@X": "72.000",
+          "@Y": "0.000"
+        },
+        {
+          "@Type": "BottomHeel",
+          "@X": "0.000",
+          "@Y": "0.000"
+        }
+      ]
+    },
+    "LaborFactors": {
+      "Cantilever": "0",
+      "EndDetailLeft": "0",
+      "EndDetailRight": "0",
+      "BeamPocket": "N"
+    }
+  }
+}

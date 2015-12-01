@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace ComponentFileReader.FileClasses.KxrComponent
 {
-    public class KxrStandardLoading
+    public partial class KxrComponent
     {
-        public string TCLive;
-        public string TCDead;
-        public string BCLive;
-        public string BCDead;
+        public class KxrStandardLoading
+        {
+            public string TCLive;
+            public string TCDead;
+            public string BCLive;
+            public string BCDead;
+        }
     }
 }
