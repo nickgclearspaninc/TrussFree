@@ -74,10 +74,12 @@
     <Compile Include="FileClasses\KxrComponent\KxrPiece.cs" />
     <Compile Include="FileClasses\KxrComponent\KxrWindLoad.cs" />
     <Compile Include="FileClasses\TreComponent\TreData\TreHeader.cs" />
+    <Compile Include="FileClasses\TreComponent\TreData\TreMaterialDefault.cs" />
     <Compile Include="FileClasses\TreComponent\TreData\TreMemberInfo.cs" />
     <Compile Include="FileClasses\TreComponent\TreData\TrePoint.cs" />
     <Compile Include="FileClasses\TreComponent\TreData\TreMember.cs" />
     <Compile Include="FileClasses\TreComponent\TreComponentOriginalNodes.cs" />
+    <Compile Include="FileClasses\TreComponent\TreData\TreSheathing.cs" />
     <Compile Include="FileClasses\TreComponent\TreParse.cs" />
     <Compile Include="FileClasses\TrsComponent\TrsComponent.cs" />
     <Compile Include="LumberClass\Lumber.cs" />

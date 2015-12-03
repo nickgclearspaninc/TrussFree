@@ -36,7 +36,7 @@ namespace ComponentFileReader.FileClasses.TreComponent
         public string Min2x3WebGradeFailureCanada;
         public string Min2x4WebGradeFailureCanada;
         public string DryLbrWithMetalWebFailCanada;
-        public string MaxAllowedSpanExceedCanada;
+        public string MaxAllowedSpanCanada;
         public string NailingPatternFailureCanada;
         public string MissedLoadingCanada;
         public string UnspecifiedDesignFailCanada;
@@ -102,6 +102,21 @@ namespace ComponentFileReader.FileClasses.TreComponent
         public string UseAlternateSpacing;
         public string FirstAlternateSpacing;
         public string SecondAlternateSpacing;
+        //Line 15 (ROOF)
+        public string PiggybackFlag;
+        public string PiggybackStyle;
+        public string PiggybackGableFlag;
+        public string PiggybackBottomChordOffset;
+        public string PiggybackTailOffset;
+        public string PiggybackTopChordButtCutFlag;
+        public string PiggybackTopChordButtCutLength;
+        public string PiggybackBottomChordButtCutFlag;
+        public string PiggybackBottomChordButtCutLength;
+        //Line 16 (ROOF)
+        public string PiggybackMinimumStudLength;
+        public string PiggybackStudSpacing;
+        public string PiggybackGableStudLayout;
+        public string PiggybackStringIdentifier;
         //Misc. Variables for FLOOR BASIC
         //Line 6 (FLOOR)
         public string FloorSetupTrusses;
@@ -137,5 +152,30 @@ namespace ComponentFileReader.FileClasses.TreComponent
         public string BearingSize;
         public string GapDistance;
         public string NumberOfTopPlies;
+        public string BottomChordHoldBack;
+        public string FortyFiveDegreeFirstWeb;
+        public string WhichEnd;
+        public string NumberOfWebsFortyFiveDegreeCase;
+        public string LengthOfExtraTcPlies;
+        public string MeasureFromTop;
+        public string BlockLocation;
+        public string MaterialListIndex;
+        public string RecutBottomChordByNumberOfEndVerticals;
+        public string DoubleTopChordLength;
+        public string NumberOfVerticals;
+        public string NumberOfDrops;
+        public string SideMeasuredFrom;
+        public string LapDistance;
+        public string BearingCondition;
+        public string NotUsed;
+        public string WhichSideIsDropped;
+        public string RibbonBlockWidthIfUsed;
+        public string Width;
+        public string Height;
+        public string NumberOfLeftVerticals;
+        public string NumberOfRightVerticals;
+        public string ContinuousBottomChordFlag;
+        public string AddAdditionalVerticalAtEndOfTopChord;
+        public string HorizontalLengthOfFirstWeb;
     }
 }

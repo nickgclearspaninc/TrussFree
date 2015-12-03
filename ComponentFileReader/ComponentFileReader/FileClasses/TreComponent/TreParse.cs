@@ -6,27 +6,32 @@ using System.Threading.Tasks;
 
 namespace ComponentFileReader.FileClasses.TreComponent
 {
-    public partial class TreComponent
+    public partial class TreComponent 
     {
-        // Section index variables
-        private int _memberInfoIndex = -1;
-        private int _roofTrussIndex = -1;
-        private int _floorTrussIndex = -1;
-        private int _detailInfoIndex = -1;
-        private int _webbingInfoIndex = -1;
-        private int _sheathingInfoIndex = -1;
-        private int _plateInfoIndex = -1;
+        #region _variables and Properties
+        private int currentLine; //Pointer to keep track of where in the file we are
+        #endregion
 
-        /// <summary>
-        /// Entrance point for parsing Tre data
-        /// </summary>
+        #region _sectionParsing
         private void _parseTreData()
         {
+            currentLine = 0;
+
+            _parseHeaderInfo();
+            _parseSheathingInfo();
+            _parseMaterialDefaults();
+            _parseMemberInfo();
+        }
+
+        private void _parseHeaderInfo()
+        {
+            //HEADER INFO
             _parseLine1();
             _parseLine2();
             _parseLine3();
+            _parseLine4();
             _parseLine5();
-            if(this.RoofOrFloorTruss.Equals("ROOF BASICS"))
+            if (this.RoofOrFloorTruss.Equals("ROOF BASICS"))
             {
                 _parseLine6Roof();
                 _parseLine7Roof();
@@ -36,6 +41,9 @@ namespace ComponentFileReader.FileClasses.TreComponent
                 _parseLine11Roof();
                 _parseLine12Roof();
                 _parseLine13Roof();
+                _parseLine14Roof();
+                _parseLine15Roof();
+                _parseLine16Roof();
             }
             else
             {
@@ -46,74 +54,156 @@ namespace ComponentFileReader.FileClasses.TreComponent
                 _parseLine10Floor();
                 _parseLine11Floor();
                 _parseLine12Floor();
+                _parseWebbingInfo();
             }
         }
 
+        private void _parseWebbingInfo()
+        {
+            //ToDo: implement
+            throw new NotImplementedException();
+        }
+
+        private void _parseSheathingInfo()
+        {
+            this.SheathingInfo = new List<TreSheathing>();
+            currentLine += 2;
+            string[] contentsToParse = Contents[currentLine].Split(' ');
+            while(contentsToParse[0].Equals("HD") == false)
+            {
+                this.SheathingInfo.Add(new TreSheathing(contentsToParse));
+                currentLine++;
+                contentsToParse = Contents[currentLine].Split(' ');
+            }
+        }
+
+        private void _parseMaterialDefaults()
+        {
+            //MATERIAL DEFAULTS
+            this.DefaultMaterials = new List<TreMaterial>();
+            currentLine = 24; //ToDo: Make relative
+            string[] contentsToParse = Contents[currentLine].Split(' ');
+            while (contentsToParse.Length > 1)
+            {
+                DefaultMaterials.Add(new TreMaterial(contentsToParse));
+                currentLine++;
+                contentsToParse = Contents[currentLine].Split(' ');
+            }
+
+            //MATERIAL DEFAULTS MAP
+            currentLine += 2;
+            this.DefaultMaterialsMap = new List<TreMaterialMap>();
+            contentsToParse = Contents[currentLine].Split(',');
+            while (contentsToParse.Length > 1)
+            {
+                this.DefaultMaterialsMap.Add(new TreMaterialMap(contentsToParse));
+                currentLine++;
+                contentsToParse = Contents[currentLine].Split(',');
+            }
+        }
+        
+        private void _parseMemberInfo()
+        {
+            TreMemberInfo treMemberInfo = new TreMemberInfo();
+            treMemberInfo.TreMembers = new List<TreMember>();
+            // The line numbers should not be understood as concrete, but as pointers to the line specified in the Mitek documentation
+
+            currentLine = 107;
+            _parseLine25(treMemberInfo);
+            _parseLine26(treMemberInfo);
+            // Set truss members
+            for (int i = 0; i < Convert.ToInt32(treMemberInfo.NumberOfMembers); i++)
+            {
+                TreMember treMember = new TreMember();
+
+                // Parse the five lines that make up a truss member
+                // The line numbers should not be understood as concrete, but as pointers to the line specified in the Mitek documentation
+                _parseLine27(treMember);
+                _parseLine28(treMember);
+                _parseLine31(treMember);
+                _parseLine32(treMember);
+                _parseLine33(treMember);
+
+                treMemberInfo.TreMembers.Add(treMember);
+            }
+        }
+        #endregion
+
+        #region _lineParsing
         private void _parseLine1()
         {
-            string[] contentsLine1 = Contents[0].Split(' ');
+            string[] contentsLine1 = Contents[currentLine].Split(' ');
             this.InternalUnits = contentsLine1[0].Trim();
             this.DisplayUnits = contentsLine1[1].Trim();
+
+            currentLine++;
         }
 
         private void _parseLine2()
         {
-            string[] contentsLine2 = Contents[1].Split(' ');
-            this.GeoconvertFailure = contentsLine2[0].Trim();
+            string[] contentsLine2 = Contents[currentLine].Split(' ');
+            this.SummaryResultOfAnalyze = contentsLine2[0].Trim();
 
             char[] charValues = contentsLine2[1].ToCharArray();
             string[] boolValues = charValues.Select(x => x.ToString()).ToArray();
-            this.AllJointsArePlated = boolValues[0];
-            this.TrussUnstable = boolValues[1];
-            this.EstimateHasBeenDone = boolValues[2];
-            this.TrussDeflectionFailure = boolValues[3];
-            this.CamberStatus = boolValues[4];
-            this.ReactionFailure = boolValues[5];
-            this.HorizontalTotalDeflectionFailure = boolValues[6];
-            this.HorizontalLiveDeflectionFailure = boolValues[7];
-            this.BearingOutOfScarf = boolValues[8];
-            this.WedgeFailure = boolValues[9];
-            this.HeelFailure = boolValues[10];
-            this.FloorSpliceJointFailure = boolValues[11];
-            this.BearingNotAtJointFailure = boolValues[12];
-            this.BirdsmouthHeelFailure = boolValues[13];
-            this.LSLFailure = boolValues[14];
-            this.MinChordGradeFailureCanada = boolValues[15];
-            this.Span2x3ExceededCanada = boolValues[16];
-            this.Min2x3WebGradeFailureCanada = boolValues[17];
-            this.Min2x4WebGradeFailureCanada = boolValues[18];
-            this.DryLbrWithMetalWebFailCanada = boolValues[19];
-            this.MaxAllowedSpanExceedCanada = boolValues[20];
-            this.NailingPatternFailureCanada = boolValues[21];
-            this.MissedLoadingCanada = boolValues[22];
-            this.UnspecifiedDesignFailCanada = boolValues[23];
-            this.ChangedRequirementsCanada = boolValues[24];
-            this.PanelRackingDeflectionFailure = boolValues[25];
-            this.AnalysisResult = boolValues[26];
+            this.CSIFailure = boolValues[0];
+            this.SSIFailure = boolValues[1];
+            this.GeoconvertFailure = boolValues[2];
+            this.AllJointsArePlated = boolValues[3];
+            this.TrussUnstable = boolValues[4];
+            this.EstimateHasBeenDone = boolValues[5];
+            this.TrussDeflectionFailure = boolValues[6];
+            this.CamberStatus = boolValues[7];
+            this.ReactionFailure = boolValues[8];
+            this.HorizontalTotalDeflectionFailure = boolValues[9];
+            this.HorizontalLiveDeflectionFailure = boolValues[10];
+            this.BearingOutOfScarf = boolValues[11];
+            this.WedgeFailure = boolValues[12];
+            this.HeelFailure = boolValues[13];
+            this.FloorSpliceJointFailure = boolValues[14];
+            this.BearingNotAtJointFailure = boolValues[15];
+            this.BirdsmouthHeelFailure = boolValues[16];
+            this.LSLFailure = boolValues[17];
+            this.MinChordGradeFailureCanada = boolValues[18];
+            this.Span2x3ExceededCanada = boolValues[19];
+            this.Min2x3WebGradeFailureCanada = boolValues[20];
+            this.Min2x4WebGradeFailureCanada = boolValues[21];
+            this.DryLbrWithMetalWebFailCanada = boolValues[22];
+            this.MaxAllowedSpanCanada = boolValues[23];
+            this.NailingPatternFailureCanada = boolValues[24];
+            this.MissedLoadingCanada = boolValues[25];
+            this.UnspecifiedDesignFailCanada = boolValues[26];
+            this.ChangedRequirementsCanada = boolValues[27];
+            this.PanelRackingDeflectionFailure = boolValues[28];
+            this.AnalysisResult = boolValues[29];
 
             this.TreVersionNumber = contentsLine2[2].Trim();
+            currentLine++;
         }
 
         private void _parseLine3()
         {
-            string[] contentsLine3 = Contents[2].Split(' ');
+            string[] contentsLine3 = Contents[currentLine].Split(' ');
             this.TypeOfTruss = contentsLine3[0].Trim();
             this.ProgramMode = contentsLine3[1].Trim();
+            currentLine++;
         }
 
         private void _parseLine4()
         {
+            currentLine++;
             //ToDo: Facility Info, to TrussID=[String]???
         }
 
         private void _parseLine5()
         {
-            this.RoofOrFloorTruss = Contents[4].Trim();
+            this.RoofOrFloorTruss = Contents[currentLine].Trim();
+            currentLine++;
         }
 
         private void _parseLine6Roof()
         {
-            string[] contentsLine6 = Contents[5].Split(' '); 
+            string[] contentsLine6 = Contents[currentLine].Split(' '); 
             this.Quantity = contentsLine6[0];
             this.TrussSpan = contentsLine6[1];
             this.TopSlope = contentsLine6[2];
@@ -124,11 +214,12 @@ namespace ComponentFileReader.FileClasses.TreComponent
             this.LeftTopChordOverhang = contentsLine6[7];
             this.RightTopChordOverhang = contentsLine6[8];
             this.DesignConnectionStatus = contentsLine6[9];
+            currentLine++;
         }
 
         private void _parseLine6Floor()
         {
-            string[] contentsLine6 = Contents[5].Split(' ');
+            string[] contentsLine6 = Contents[currentLine].Split(' ');
             this.Quantity = contentsLine6[0];
             this.TrussSpan = contentsLine6[1];
             this.LeftOverhangLength = contentsLine6[2]; //ToDo: Verify this is length
@@ -143,37 +234,41 @@ namespace ComponentFileReader.FileClasses.TreComponent
             this.TrimmableEnd = contentsLine6[10];
             this.UseFullMetalWebOnly = contentsLine6[11];
             this.DesignConnectionStatus = contentsLine6[12];
+            currentLine++;
         }
 
         private void _parseLine7Roof()
         {
-            string[] contentsLine7 = Contents[6].Split(' ');
+            string[] contentsLine7 = Contents[currentLine].Split(' ');
             this.LeftHeelHeight = contentsLine7[0];
             this.RightHeelHeight = contentsLine7[1];
             this.LeftSeatCut = contentsLine7[2];
             this.LeftBearingSize = contentsLine7[3];
             this.RightSeatCut = contentsLine7[4];
             this.RightBearingSize = contentsLine7[5];
+            currentLine++;
         }
         
         private void _parseLine7Floor()
         {
-            string[] contentsLine7 = Contents[6].Split(' ');
+            string[] contentsLine7 = Contents[currentLine].Split(' ');
             this.GirderTrussIndicator = contentsLine7[0];
             this.LoadingFileName = contentsLine7[1];
+            currentLine++;
         }
 
         private void _parseLine8Roof()
         {
-            string[] contentsLine8 = Contents[7].Split(' ');
+            string[] contentsLine8 = Contents[currentLine].Split(' ');
             this.LeftButtCut = contentsLine8[0];
             this.RightButtCut = contentsLine8[1];
             this.Spacing = contentsLine8[2];
+            currentLine++;
         }
 
         private void _parseLine8Floor()
         {
-            string[] contentsLine8 = Contents[7].Split(' ');
+            string[] contentsLine8 = Contents[currentLine].Split(' ');
             this.TrussDepth = contentsLine8[0];
             this.NumberOfTopChords = contentsLine8[1];
             this.NumberOfBottomChords = contentsLine8[2];
@@ -183,54 +278,62 @@ namespace ComponentFileReader.FileClasses.TreComponent
             this.TopChordRibbon2 = contentsLine8[6];
             this.BottomChordRibbon1 = contentsLine8[7];
             this.BottomChordRibbon2 = contentsLine8[8];
+            currentLine++;
         }
 
         private void _parseLine9Roof()
         {
-            string[] contentsLine9 = Contents[8].Split(' ');
+            string[] contentsLine9 = Contents[currentLine].Split(' ');
             this.LeftHeelMatch = contentsLine9[0];
             this.RightHeelMatch = contentsLine9[1];
+            currentLine++;
         }
 
         private void _parseLine9Floor()
         {
-            this.IdentificationString = Contents[8];
+            this.IdentificationString = Contents[currentLine];
+            currentLine++;
         }
 
         private void _parseLine10Roof()
         {
-            string[] contentsLine10 = Contents[9].Split(' ');
+            string[] contentsLine10 = Contents[currentLine].Split(' ');
             this.LeftOverhangType = contentsLine10[0];
             this.RightOverhangType = contentsLine10[1];
+            currentLine++;
         }
 
         private void _parseLine10Floor()
         {
-            this.NumberOfDetails = Contents[9];
+            this.NumberOfDetails = Contents[currentLine];
+            currentLine++;
         }
 
         private void _parseLine11Roof()
         {
-            string[] contentsLine11 = Contents[10].Split(' ');
+            string[] contentsLine11 = Contents[currentLine].Split(' ');
             this.GirderTrussIndicator = contentsLine11[0];
             this.LoadingFileName = contentsLine11[1];
+            currentLine++;
         }
 
         private void _parseLine11Floor()
         {
-            this.DetailType = Contents[10];
+            this.DetailType = Contents[currentLine];
+            currentLine++;
         }
 
         private void _parseLine12Roof()
         {
-            string[] contentsLine12 = Contents[11].Split(' ');
+            string[] contentsLine12 = Contents[currentLine].Split(' ');
             this.UserLevel = contentsLine12[0];
             this.AtticVersatruss = contentsLine12[1];
+            currentLine++;
         }
 
         private void _parseLine12Floor()
         {
-            string[] contentsLine12 = Contents[11].Split(' ');
+            string[] contentsLine12 = Contents[currentLine].Split(' ');
             if(this.DetailType.Equals("1"))
             {
                 this.XCoordinateLocation = contentsLine12[0];
@@ -267,45 +370,103 @@ namespace ComponentFileReader.FileClasses.TreComponent
             }
             else if (this.DetailType.Equals("6"))
             {
-
+                this.XCoordinateLocation = contentsLine12[0];
+                this.BearingSize = contentsLine12[1];
+                this.GapDistance = contentsLine12[2];
+                this.NumberOfTopPlies = contentsLine12[3];
+                this.BottomChordHoldBack = contentsLine12[4];
+                this.FortyFiveDegreeFirstWeb = contentsLine12[5];
+                this.WhichEnd = contentsLine12[6];
+                this.NumberOfWebsFortyFiveDegreeCase = contentsLine12[7];
+                this.LengthOfExtraTcPlies = contentsLine12[8];
             }
             else if (this.DetailType.Equals("7"))
             {
-
+                this.XCoordinateLocation = contentsLine12[0];
+                this.BearingSize = contentsLine12[1];
+                this.BottomChordHoldBack = contentsLine12[2];
+                this.NumberOfTopPlies = contentsLine12[3];
+                this.MeasureFromTop = contentsLine12[4];
+                this.BlockLocation = contentsLine12[5];
+                this.MaterialListIndex = contentsLine12[6];
             }
             else if (this.DetailType.Equals("8"))
             {
-
+                this.XCoordinateLocation = contentsLine12[0];
+                this.NumberOfEndVerticals = contentsLine12[1];
+                this.BearingSize = contentsLine12[2];
+                this.BottomChordHoldBack = contentsLine12[3];
+                this.NumberOfTopPlies = contentsLine12[4];
+                this.MeasureFromTop = contentsLine12[5];
+                this.BlockLocation = contentsLine12[6];
+                this.MaterialListIndex = contentsLine12[7];
+                this.RecutBottomChordByNumberOfEndVerticals = contentsLine12[8];
+                this.DoubleTopChordLength = contentsLine12[9];
+                this.AddAdditionalVerticalAtEndOfTopChord = contentsLine12[10];
+                this.HorizontalLengthOfFirstWeb = contentsLine12[11];
             }
             else if (this.DetailType.Equals("9"))
             {
-
+                this.XCoordinateLocation = contentsLine12[0];
+                this.NumberOfVerticals = contentsLine12[1];
+                this.NumberOfDrops = contentsLine12[2];
+                this.SideMeasuredFrom = contentsLine12[3];
+                this.LapDistance = contentsLine12[4];
+                this.BearingCondition = contentsLine12[5];
+                this.NotUsed = contentsLine12[6];
+                this.WhichSideIsDropped = contentsLine12[7];
+                this.RibbonBlockWidthIfUsed = contentsLine12[8];
             }
             else if (this.DetailType.Equals("10"))
             {
-
+                this.XCoordinateLocation = contentsLine12[0];
+                this.SideMeasuredFrom = contentsLine12[1];
+                this.BearingCondition = contentsLine12[2];
             }
             else if (this.DetailType.Equals("11"))
             {
-
+                this.XCoordinateLocation = contentsLine12[0];
+                this.NumberOfVerticals = contentsLine12[1];
+                this.SideMeasuredFrom = contentsLine12[2];
+                this.BearingCondition = contentsLine12[3];
             }
             else if (this.DetailType.Equals("12"))
             {
-
+                this.XCoordinateLocation = contentsLine12[0];
+                this.Width = contentsLine12[1];
+                this.NumberOfLeftVerticals = contentsLine12[2];
+                this.NumberOfRightVerticals = contentsLine12[3];
+                this.SideMeasuredFrom = contentsLine12[4];
             }
             else if (this.DetailType.Equals("13"))
             {
-
+                this.XCoordinateLocation = contentsLine12[0];
+                this.Width = contentsLine12[1];
+                this.NumberOfTopPlies = contentsLine12[2];
+                this.NumberOfLeftVerticals = contentsLine12[3];
+                this.NumberOfRightVerticals = contentsLine12[4];
+                this.ContinuousBottomChordFlag = contentsLine12[5];
+                this.SideMeasuredFrom = contentsLine12[6];
+                this.BearingCondition = contentsLine12[7];
             }
             else if (this.DetailType.Equals("14"))
             {
-
+                this.XCoordinateLocation = contentsLine12[0];
+                this.Width = contentsLine12[1];
+                this.Height = contentsLine12[2];
+                this.NumberOfTopPlies = contentsLine12[3];
+                this.NumberOfLeftVerticals = contentsLine12[4];
+                this.NumberOfRightVerticals = contentsLine12[5];
+                this.ContinuousBottomChordFlag = contentsLine12[6];
+                this.SideMeasuredFrom = contentsLine12[7];
+                this.BearingCondition = contentsLine12[8];
             }
+            currentLine++;
         }
 
         private void _parseLine13Roof()
         {
-            string[] contentsLine13 = Contents[12].Split(' ');
+            string[] contentsLine13 = Contents[currentLine].Split(' ');
             this.LeftHeelReductionType = contentsLine13[0];
             this.RightHeelReductionType = contentsLine13[1];
             this.TrussApplicationType = contentsLine13[2];
@@ -318,102 +479,47 @@ namespace ComponentFileReader.FileClasses.TreComponent
             this.TOWKeepVerticalsVertical = contentsLine13[9];
             this.TOWOptimizeApexVerts = contentsLine13[10];
             this.TOWOptimizeNonApexVerts = contentsLine13[11];
+            this.SquareCutRoofWebs = contentsLine13[12];
+            currentLine++;
         }
 
-        /// <summary>
-        /// Check that can proceed with parsing
-        /// </summary>
-        /// <param name="index">The variable that is supposed to be an index to a section</param>
-        /// <returns></returns>
-        private bool _parsingPrerequisites(int index)
+        private void _parseLine14Roof()
         {
-            // If there are no file contents, we cannot parse members
-            if (Contents == null)
-            {
-                return false;
-            }
-
-            // If indices have not yet been determined, that needs to happen
-            if (index == -1)
-            {
-                _obtainIndices();
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Set the line indices for different sections
-        /// </summary>
-        private void _obtainIndices()
-        {
-            for (int i = 0; i < Contents.Length; i++)
-            {
-                switch (Contents[i].Trim())
-                {
-                    case "ROOF BASICS":
-                        _roofTrussIndex = i;
-                        break;
-                    case "FLOOR BASICS":
-                        _floorTrussIndex = i;
-                        break;
-                    case "DETAIL INFO":
-                        _detailInfoIndex = i;
-                        break;
-                    case "WEBBING INFO":
-                        _webbingInfoIndex = i;
-                        break;
-                    case "SHEATHING INFORMATION":
-                        _sheathingInfoIndex = i;
-                        break;
-                    case "MEMBER INFO":
-                        _memberInfoIndex = i;
-                        break;
-                    case "[Plate Info V4000]":
-                        _plateInfoIndex = i;
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
-        /// From the Contents build a List<TreMember> and set _treMemberInfo, the backing property for TreMemberInfo
-        /// </summary>
-        private void _parseMemberInfo()
-        {
-            if(!_parsingPrerequisites(_memberInfoIndex)) //Return if we cannot parse member
-            {
-                return;
-            }
-            TreMemberInfo treMemberInfo = new TreMemberInfo();
-
-            // The line numbers should not be understood as concrete, but as pointers to the line specified in the Mitek documentation
-            _parseLine25(treMemberInfo);
-            _parseLine26(treMemberInfo);
-
-            // Set truss members
-            for (int i = 0; i < treMemberInfo.NumberOfMembers.Length; i++)
-            {
-                TreMember treMember = new TreMember();
-
-                // Parse the five lines that make up a truss member
-                // The line numbers should not be understood as concrete, but as pointers to the line specified in the Mitek documentation
-                _parseLine27(treMember, i);
-                _parseLine28(treMember, i);
-                _parseLine31(treMember, i);
-                _parseLine32(treMember, i);
-                _parseLine33(treMember, i);
-
-                treMemberInfo.TreMembers.Add(treMember);
-            }
+            string[] contentsLine14 = Contents[currentLine].Split(' ');
+            this.SecondAlternateSpacing = contentsLine14[0];
+            this.FirstAlternateSpacing = contentsLine14[1];
+            this.UseAlternateSpacing = contentsLine14[2];
+            currentLine++;
         }
         
+        private void _parseLine15Roof()
+        {
+            string[] contentsLine15 = Contents[currentLine].Split(' ');
+            PiggybackFlag = contentsLine15[2];
+            PiggybackStyle = contentsLine15[3];
+            PiggybackGableFlag = contentsLine15[4];
+            PiggybackBottomChordOffset = contentsLine15[5];
+            PiggybackTailOffset = contentsLine15[6];
+            PiggybackTopChordButtCutFlag = contentsLine15[7];
+            PiggybackTopChordButtCutLength = contentsLine15[8];
+            PiggybackBottomChordButtCutFlag = contentsLine15[9];
+            PiggybackBottomChordButtCutLength = contentsLine15[10];
+            currentLine++;
+        }
+
+        private void _parseLine16Roof()
+        {
+            string[] contentsLine16 = Contents[currentLine].Split(' ');
+            PiggybackMinimumStudLength = contentsLine16[2];
+            PiggybackStudSpacing = contentsLine16[3];
+            PiggybackGableStudLayout = contentsLine16[4];
+            PiggybackStringIdentifier = contentsLine16[5];
+            currentLine++;
+        }
 
         private void _parseLine25(TreMemberInfo treMemberInfo)
         {
-            // Parse line 25 (see MiTek's documentation file for the TRE file format)
-            // Line 25 == Contents[_memberInfoIndex + 1]
-            string[] line25 = Contents[_memberInfoIndex + 1].Trim().Split(' ');
+            string[] line25 = Contents[currentLine].Trim().Split(','); 
             if (line25.Length < 4)
             {
                 throw new Exception("Problem while parsing Member Info in TRE file (first line in Member Info section): too few items");
@@ -422,13 +528,14 @@ namespace ComponentFileReader.FileClasses.TreComponent
             treMemberInfo.TopChordLumberSize = line25[1];
             treMemberInfo.BottomChordLumberSize = line25[2];
             treMemberInfo.WebLumberSize = line25[3];
+            currentLine++;
         }
 
         private void _parseLine26(TreMemberInfo treMemberInfo)
         {
             // Parse line 26 (see MiTek's documentation file for the TRE file format)
             // Line 26 == Contents[_memberInfoIndex + 2]
-            string[] line26 = Contents[_memberInfoIndex + 2].Trim().Split(' ');
+            string[] line26 = Contents[currentLine].Trim().Split(' ');
             if (line26.Length < 12)
             {
                 throw new Exception("Problem while parsing Member Info in TRE file (second line in Member Info section): too few items");
@@ -445,20 +552,20 @@ namespace ComponentFileReader.FileClasses.TreComponent
             treMemberInfo.InitialReferenceLineSCR = line26[9];
             treMemberInfo.InitialReferenceLineOH1 = line26[10];
             treMemberInfo.InitialReferenceLineOH2 = line26[11];
+            currentLine++;
         }
 
-        private void _parseLine27(TreMember treMember, int memberNumber)
+        private void _parseLine27(TreMember treMember)
         {
-            // Parse line 27 (see MiTek's documentation file for the TRE file format)
-            // Line 27 is the first line of member data for each member
-            // So go to the first line of the first member (_memberInfoIndex + 3)
-            // And then adjust based on which member we're on ( + i * 5) (5 lines per member)
-            var line27Index = _memberInfoIndex + 3 + memberNumber * 5;
+            //Parse line 27 (see MiTek's documentation file for the TRE file format)
+            //Line 27 is the first line of member data for each member
+            //So go to the first line of the first member (_memberInfoIndex + 3)
+            //And then adjust based on which member we're on ( + i * 5) (5 lines per member)
             var itemsOnLine27 = 62;
-            string[] line27 = Contents[line27Index].Trim().Split(' ');
+            string[] line27 = Contents[currentLine].Trim().Split(' ');
             if (line27.Length < itemsOnLine27)
             {
-                throw new Exception("Problem while parsing a member in TRE file line " + line27Index + ": should be " + itemsOnLine27 + " items but found only " + line27.Length);
+                throw new Exception("Problem while parsing a member in TRE file line " + 109 + ": should be " + itemsOnLine27 + " items but found only " + line27.Length);
             }
             treMember.MemberCounter = line27[0];
             treMember.MemberLabelLine27 = line27[1];
@@ -522,37 +629,37 @@ namespace ComponentFileReader.FileClasses.TreComponent
             treMember.ShipLooseMember = line27[59];
             treMember.PlyThisMemberAppliesTo = line27[60];
             treMember.LumberEdgeFlatFlag = line27[61];
+            currentLine++; 
         }
 
-        private void _parseLine28(TreMember treMember, int memberNumber)
+        private void _parseLine28(TreMember treMember)
         {
             // Parse line 28 (see MiTek's documentation file for the TRE file format)
             // Line 28 is the second line of member data for each member
             // So go to the second line of the first member (_memberInfoIndex + 4)
             // And then adjust based on which member we're on ( + i * 5) (5 lines per member)
-            var line28Index = _memberInfoIndex + 4 + memberNumber * 5;
             var itemsOnLine28 = 2;
-            string[] line28 = Contents[line28Index].Trim().Split(' ');
+            string[] line28 = Contents[currentLine].Trim().Split(' ');
             if (line28.Length < itemsOnLine28)
             {
-                throw new Exception("Problem while parsing a member in TRE file line " + line28Index + ": should be " + itemsOnLine28 + " items but found only " + line28.Length);
+                throw new Exception("Problem while parsing a member in TRE file line " + 110 + ": should be " + itemsOnLine28 + " items but found only " + line28.Length);
             }
             treMember.OriginalLumberIndex = line28[0];
             treMember.GableStudFlag = line28[1];
+            currentLine++;
         }
 
-        private void _parseLine31(TreMember treMember, int memberNumber)
+        private void _parseLine31(TreMember treMember)
         {
             // Parse line 31 (see MiTek's documentation file for the TRE file format)
             // Line 31 is the third line of member data for each member
             // So go to the third line of the first member (_memberInfoIndex + 5)
             // And then adjust based on which member we're on ( + i * 5) (5 lines per member)
-            var line31Index = _memberInfoIndex + 5 + memberNumber * 5;
-            var itemsOnLine31 = 14;
-            string[] line31 = Contents[line31Index].Trim().Split(' ');
+            var itemsOnLine31 = 16;
+            string[] line31 = Contents[currentLine].Trim().Split(',');
             if (line31.Length < itemsOnLine31)
             {
-                throw new Exception("Problem while parsing a member in TRE file line " + line31Index + ": should be " + itemsOnLine31 + " items but found only " + line31.Length);
+                throw new Exception("Problem while parsing a member in TRE file line " + 111 + ": should be " + itemsOnLine31 + " items but found only " + line31.Length);
             }
             treMember.MemberSize = line31[0];
             treMember.MemberGrade = line31[1];
@@ -568,19 +675,19 @@ namespace ComponentFileReader.FileClasses.TreComponent
             treMember.PointsOnLeftEndOfMember = line31[11];
             treMember.MemberStockLength = line31[12];
             treMember.MemberCost = line31[13];
+            currentLine++;
         }
 
-        private void _parseLine32(TreMember treMember, int memberNumber)
+        private void _parseLine32(TreMember treMember)
         {
             // Parse line 32 (see MiTek's documentation file for the TRE file format)
             // Line 32 is the fourth line of member data for each member
             // So go to the fourth line of the first member (_memberInfoIndex + 5)
             // And then adjust based on which member we're on ( + i * 5) (5 lines per member)
-            var line32Index = _memberInfoIndex + 6 + memberNumber * 5;
-            string[] line32 = Contents[line32Index].Trim().Split(','); // Split on comma, these are points
+            string[] line32 = Contents[currentLine].Trim().Split(','); // Split on comma, these are points
             if (line32.Length % 2 != 0)
             {
-                throw new Exception("Problem while parsing a member in TRE file line " + line32Index + ": there is an odd number of numbers - should be even because represents points, which are in pairs (x,y)");
+                throw new Exception("Problem while parsing a member in TRE file line " + 111 + ": there is an odd number of numbers - should be even because represents points, which are in pairs (x,y)");
             }
             List<TrePoint> points = new List<TrePoint>();
             for (int j = 0; j < line32.Length; j = j + 2) // Advance by two because we're going point by point
@@ -590,25 +697,23 @@ namespace ComponentFileReader.FileClasses.TreComponent
                 point.Y = line32[j + 1].Trim();
                 points.Add(point);
             }
+            currentLine++;
         }
 
-        private void _parseLine33(TreMember treMember, int memberNumber)
+        private void _parseLine33(TreMember treMember)
         {
-            // Parse line 33 (see MiTek's documentation file for the TRE file format)
-            // Line 33 is the fifth line of member data for each member
-            // So go to the fifth line of the first member (_memberInfoIndex + 5)
-            // And then adjust based on which member we're on ( + i * 5) (5 lines per member)
-            var line33Index = _memberInfoIndex + 7 + memberNumber * 5;
             var itemsOnLine33 = 4;
-            string[] line33 = Contents[line33Index].Trim().Split(' ');
+            string[] line33 = Contents[currentLine].Trim().Split(' ');
             if (line33.Length < itemsOnLine33)
             {
-                throw new Exception("Problem while parsing a member in TRE file line " + line33Index + ": should be " + itemsOnLine33 + " items but found only " + line33.Length);
+                throw new Exception("Problem while parsing a member in TRE file line " + 112 + ": should be " + itemsOnLine33 + " items but found only " + line33.Length);
             }
             treMember.leftBevelType = line33[0];
             treMember.rightBevelType = line33[1];
             treMember.leftBevelAngle = line33[2];
             treMember.rightBevelAngle = line33[3];
+            currentLine++;
         }
+        #endregion
     }
 }
