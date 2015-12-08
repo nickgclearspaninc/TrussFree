@@ -21,6 +21,9 @@ namespace ComponentFileReader.FileClasses.TreComponent
             _parseSheathingInfo();
             _parseMaterialDefaults();
             _parseMemberInfo();
+            //ToDo: Parse info between MEMBER INFO and BEARING INFO
+            _parseBearingInfo();
+            _parseNotes();
         }
 
         private void _parseHeaderInfo()
@@ -126,6 +129,98 @@ namespace ComponentFileReader.FileClasses.TreComponent
 
                 treMemberInfo.TreMembers.Add(treMember);
             }
+        }
+
+        private void _parseBearingInfo()
+        {
+            currentLine = 550;
+            _parseLine43();
+            this.Bearings = new List<TreBearing>();
+            for(int i = 0; i < Convert.ToInt32(this.NumberOfBearings); i++)
+            {
+                string[] contentsToParse = Contents[currentLine].Split(' ');
+                this.Bearings.Add(new TreBearing(contentsToParse));
+                currentLine++;
+            }
+            _parseLine45();
+            string[] pointToParse = Contents[currentLine].Split(' ');
+            this.BearingPoints = new List<TrePoint>();
+            do
+            {
+                TrePoint pointToAdd = new TrePoint();
+                pointToAdd.X = pointToParse[0];
+                pointToAdd.Y = pointToParse[1];
+                currentLine++;
+                pointToParse = Contents[currentLine].Split(' ');
+                this.BearingPoints.Add(pointToAdd);
+            }
+            while (pointToParse.Length > 1);
+            //Lines 47 & 48
+            this.NumberOfSegments = pointToParse[0];
+            if (Convert.ToInt32(NumberOfSegments) > 0)
+            {
+                currentLine++;
+                string[] panelsToParse = Contents[currentLine].Split(' ');
+                this.NumberOfPanelsForSegmentAtIndex = new List<string>();
+                for (int i = 0; i < Convert.ToInt32(NumberOfSegments); i++)
+                {
+                    this.NumberOfPanelsForSegmentAtIndex.Add(panelsToParse[i]);
+                }
+            }
+            currentLine++;
+            //Hip Extensions
+            this.HipExtensions = new List<TreHipExension>();
+            this.NumberOfCalHipExtensions = Contents[currentLine].Split(' ')[0];
+            currentLine++;
+            for (int i = 0; i < Convert.ToInt32(NumberOfCalHipExtensions); i++)
+            {
+                string[] hipExtensionToParse = Contents[currentLine].Split(' ');
+                this.HipExtensions.Add(new TreHipExension(hipExtensionToParse));
+                currentLine++;
+            }
+            //Drop Tops
+            this.DropTops = new List<TreDropTop>();
+            this.NumberOfDropTops = Contents[currentLine].Split(' ')[0];
+            currentLine++;
+            for (int i = 0; i < Convert.ToInt32(NumberOfCalHipExtensions); i++)
+            {
+                string[] hipExtensionToParse = Contents[currentLine].Split(' ');
+                this.HipExtensions.Add(new TreHipExension(hipExtensionToParse));
+                currentLine++;
+            }
+        }
+        
+        private void _parseNotes()
+        {
+            currentLine = 583;
+            string shopNotesToRead = Contents[currentLine];
+            //Shop notes
+            this.ShopNotes = "";
+            while(shopNotesToRead.Trim().Equals("<E>") == false)
+            {
+                this.ShopNotes += shopNotesToRead;
+                currentLine++;
+                shopNotesToRead = Contents[currentLine];
+            }
+            currentLine++;
+            //Truss notes
+            currentLine = 586;
+            _parseLine60();
+            currentLine++;
+            _parseLine62();
+            //Load Information
+            currentLine = 591;
+            this.LiveLoads = new TreLoadInformation(Contents[currentLine].Split(',', ';'));
+            currentLine++;
+            this.TotalLoad = new TreLoadInformation(Contents[currentLine].Split(',', ';'));
+            currentLine++;
+            this.WindLive = new TreLoadInformation(Contents[currentLine].Split(',', ';'));
+            currentLine++;
+            this.WindTotal = new TreLoadInformation(Contents[currentLine].Split(',', ';'));
+            currentLine++;
+            //Reaction Info
+            //this.NumberOfReactionInfoCases = Contents[currentLine].Trim();
+
         }
         #endregion
 
@@ -714,6 +809,119 @@ namespace ComponentFileReader.FileClasses.TreComponent
             treMember.rightBevelAngle = line33[3];
             currentLine++;
         }
+
+        private void _parseLine43()
+        {
+            string[] contentsLine43 = Contents[currentLine].Split(' ');
+            this.NumberOfBearings = contentsLine43[0];
+            this.WallLength = contentsLine43[1];
+            currentLine++;
+        }
+
+        private void _parseLine45()
+        {
+            string[] contentsLine45 = Contents[currentLine].Split(' ');
+            this.NumberOfProfile = contentsLine45[0];
+            this.RHPoint = contentsLine45[1];
+            this.CaliforniaHipIndicator = contentsLine45[2];
+            this.CaliforniaHipExtension1 = contentsLine45[3];
+            this.CaliforniaHipExtension2 = contentsLine45[4];
+            this.DropHipIndicator = contentsLine45[5];
+            this.DropHipAngle = contentsLine45[6];
+            this.DropHipThickness = contentsLine45[7];
+            this.CaliforniaHipCornerThickness = contentsLine45[8];
+            this.CaliforniaHipFrontAngle = contentsLine45[9];
+            this.CornerRafterIndicator = contentsLine45[10];
+            this.MoveVertWebsTrussIndicator = contentsLine45[11];
+            this.ApplyDropToAllIndicator = contentsLine45[12];
+            currentLine++;
+        }
+
+        private void _parseLine60()
+        {
+            string[] contentsLine60 = Contents[currentLine].Split(' ');
+            this.PartNumber = contentsLine60[0];
+            this.TrussType = contentsLine60[1];
+            this.StudSpacing = contentsLine60[2];
+            this.OptimizeDuringAnalysis = contentsLine60[3];
+            this.WebEndCutType = contentsLine60[4];
+            this.TrussDifficultyFactor = contentsLine60[5];
+            currentLine++;
+        }
+
+        private void _parseLine62() //ToDo: 112 Elements????????
+        {
+            string[] contentsLine62 = Contents[currentLine].Split(' ');
+            this.DesignMethodSelected = contentsLine62[0];
+            this.BuildingCode = contentsLine62[1];
+            this.BuildingType = contentsLine62[2];
+            this.ContinuityCode = contentsLine62[3];
+            this.SheathTopChord = contentsLine62[4];
+            this.SheathBottomChord = contentsLine62[5];
+            this.DesignDeflection = contentsLine62[6];
+            this.MaximumPlies = contentsLine62[7];
+            this.MinimumPlies = contentsLine62[8];
+            this.MaximumBraces = contentsLine62[9];
+            this.TopChordPurlinSpacing = contentsLine62[10];
+            this.BottomChordPurlinSpacing = contentsLine62[11];
+            this.CheckStockLength = contentsLine62[12];
+            this.WetService = contentsLine62[13];
+            this.StepLumber = contentsLine62[14];
+            this.PinnedSplices = contentsLine62[15];
+            this.NumberOfPlies = contentsLine62[16];
+            this.BracingType = contentsLine62[17];
+            this.UseBoltHoles = contentsLine62[18];
+            this.BoltHoleDiameter = contentsLine62[19];
+            this.DeflnCompositeAction = contentsLine62[20];
+
+            //ToDo: desinfo.cpp
+            this.TwoAnalogNodesForDado = contentsLine62[22];
+            this.FlatTopChordSheathingMaterialIndex = contentsLine62[23];
+            this.Index = contentsLine62[24];
+            this.BottomChordSheathingMaterial = contentsLine62[25];
+            this.TopChordSheathingGroup = contentsLine62[26];
+            this.FlatTopChordSheathingGroup = contentsLine62[27];
+            this.BottomChordSheathingGroup = contentsLine62[28];
+            this.CreepFactorDryLumber = contentsLine62[29];
+            this.CreepFactorWetLumber = contentsLine62[30];
+            this.HeelDesignMethodSelected = contentsLine62[31];
+            this.UseVerticalMembersForMultiPlyNails = contentsLine62[32];
+            this.FirstPreferenceBearingDesignOption = contentsLine62[33];
+            this.SecondPreferenceBearingDesignOption = contentsLine62[34];
+            this.ThirdPreferenceBearingDesignOption = contentsLine62[35];
+
+            this.TrussSheathingMaterial = contentsLine62[36];
+            this.TrussSheathingInventoryID = contentsLine62[37];
+            this.NailTrussSymmetrically = contentsLine62[38];
+            this.BearingMaterialConsiderList = contentsLine62[39];
+            this.BearingMaterialIndex = contentsLine62[40];
+            this.GussetRepairCheckGrainDirection = contentsLine62[41];
+            this.GussetRepairIncrementMaterial = contentsLine62[42];
+            this.GussetRepairDoubleLayer = contentsLine62[43];
+            this.GussetRepairOption1 = contentsLine62[44];
+            this.GussetRepairOption2 = contentsLine62[45];
+            this.GussetRepairOption3 = contentsLine62[46];
+            this.RepairSheathingMaterialIndex = contentsLine62[47];
+            this.GussetRepairInventoryID = contentsLine62[48];
+            this.AnalogMethod = contentsLine62[49];
+            this.MinSliderLength = contentsLine62[50];
+            this.MinSliderPercent = contentsLine62[51];
+
+            this.FirstAndThirdLength = contentsLine62[52];
+            this.TwoAnalogNodesForDado = contentsLine62[53];
+            this.BearingCapacity = contentsLine62[54];
+            this.UseModifyBendingCapacityFactor = contentsLine62[55];
+            this.ForintekTrussOverride = contentsLine62[56];
+            this.LatBracingMaterialInventoryID = contentsLine62[57];
+            this.LatBracingStartMaterial = contentsLine62[58];
+            this.BracingMaterialFixity = contentsLine62[59];
+            this.IgnoreFlatRoofPart9Factor = contentsLine62[60];
+            this.UseBearingSizeKzpFactor = contentsLine62[61];
+            this.BearingSupportDepth = contentsLine62[62];
+            this.PlyToPlyCompositeDesign = contentsLine62[63];
+            currentLine++;
+        }
+        
         #endregion
     }
 }
